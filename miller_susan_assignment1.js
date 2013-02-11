@@ -4,7 +4,7 @@
 // SDI 1302
 // Project 1
 // February 6, 2013
-// My First JavaScript
+// My First JavaScript Code
 
 // Variables
 
