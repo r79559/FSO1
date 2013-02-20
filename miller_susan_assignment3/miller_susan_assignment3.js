@@ -36,9 +36,10 @@ var progress = function(distance) {
 
 };
 
-progress(stopNumber);
+var miles = progress(stopNumber);
 
-progress(stopNumber);
-
+say(miles);
+say(miles);
+say(miles);
 
 
