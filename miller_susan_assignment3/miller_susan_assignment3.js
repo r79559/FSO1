@@ -9,25 +9,24 @@ var say = function(message) { console.log(message); };
 
 var stopNumber = 0;
 
-var increment = function(number) {stopNumber = number++; return;};
+var increment = function(number) {stopNumber = number + 5; return;};
 
 var progress = function(distance) {
 
-    increment(stopNumber);
 
     if (distance > 1) {
 
-        var NewDistance = distance + 5;
+        say("We've traveled " + distance + " miles.");
 
-        say("We've traveled " + NewDistance + " miles.");
+        increment(stopNumber);
 
-        return NewDistance;
+        return distance;
 
     } else {
 
-        var NewDistance = distance + 5;
-
         say("Let's go!");
+
+        increment(stopNumber);
 
         return 0;
 
@@ -38,8 +37,8 @@ var progress = function(distance) {
 
 var miles = progress(stopNumber);
 
-say(miles);
-say(miles);
 progress(stopNumber);
-
+progress(stopNumber);
+progress(stopNumber);
+progress(stopNumber);
 
