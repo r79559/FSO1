@@ -5,19 +5,40 @@
 // Course: SDI 1302
 // Title: The Little Flowchart That Could
 
-var progress = function(distance) {
-
-    newDistance = distance + 5;
-    return newDistance;
-
-};
+var say = function(message) { console.log(message); };
 
 var stopNumber = 0;
 
-var say = function(message) { console.log(message); };
+var increment = function(number) {stopNumber = number++; return;};
 
-say(progress(stopNumber = stopNumber + 1));
+var progress = function(distance) {
 
-say(progress(stopNumber = stopnumber + 1));
+    increment(stopNumber);
 
-say("hi");
+    if (distance > 1) {
+
+        var NewDistance = distance + 5;
+
+        say("We've traveled " + NewDistance + " miles.");
+
+        return NewDistance;
+
+    } else {
+
+        var NewDistance = distance + 5;
+
+        say("Let's go!");
+
+        return;
+
+    };
+
+
+};
+
+var stopNumber = progress(stopNumber);
+
+var stopNumber = progress(stopNumber);
+
+
+
