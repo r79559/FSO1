@@ -40,6 +40,6 @@ var miles = progress(stopNumber);
 
 say(miles);
 say(miles);
-say(miles);
+progress(stopNumber);
 
 
