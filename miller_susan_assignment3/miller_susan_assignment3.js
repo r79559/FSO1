@@ -29,16 +29,16 @@ var progress = function(distance) {
 
         say("Let's go!");
 
-        return;
+        return 0;
 
     };
 
 
 };
 
-var stopNumber = progress(stopNumber);
+progress(stopNumber);
 
-var stopNumber = progress(stopNumber);
+progress(stopNumber);
 
 
 
