@@ -11,7 +11,7 @@ var stopNumber = 0;                                                             
 var blockLength = 3;                                                                                                    // how long is point a to point b?
 var incrementStop = function(number) {stopNumber = number + blockLength;};                                              // function to increment stopNumber var
 var journeyLength = 10;                                                                                                 // total length of journey
-
+var items = ["my basket", "my dog Toto"];
 var friendNumber = 1;                                                                                                   // determines which friend is focus
 // var incrementFriend = function(number) {friendNumber = number + 1;};                                                    // increments friendNumber, moves to next object
 
@@ -59,36 +59,47 @@ var rubySlippers =  {
     color: "red",
     heelClicks: 3,
     phrase: "There's no place like home!",
-    action: function() {
+    add: function() {
+        var newItems = items.push("the ruby slippers");
+        return newItems;
+    },
+    goHome: function(clicks) {
 
         say(this.color);
-
     }
+};
+
+
+function readyToGo(things) {
+    var i=0
+    say("I gathered: ");
+    while (i < items.length) {say(things[i]); i++; };
+    say("And with a deep breath, I was off.")
 };
 
 var progress = function(distance) {                                                                                     // function that deals with distance
 
     if ((journeyLength - distance === 1)) {
 
-        say("The sign says we're " + (journeyLength - distance ) + " mile from The Emerald City.  We're almost there!");
+        say("The sign said we were " + (journeyLength - distance ) + " mile from The Emerald City.  \"We're almost there!\"");
 
         incrementStop(stopNumber);
 
     } else if ((distance > 1) && (distance < journeyLength)) {                                                                 // Boolean comparison
 
-        say("The sign says we're " + (journeyLength - distance) + " miles from The Emerald City.  Let's go!");
+        say("The sign said we were " + (journeyLength - distance) + " miles from The Emerald City.  \"Let's go!\"");
 
         incrementStop(stopNumber);
 
     } else if (distance < 1) {
 
-        say("I don't think we're in Kansas anymore, Toto!");
+        say("\"I don't think we're in Kansas anymore, Toto!\" I said, holding him close.");
 
         incrementStop(stopNumber);
 
     } else {
 
-        say("Look!  It's the Emerald City!");
+        say("\"Look!\" I exclaimed,  \"It's the Emerald City!\"");
 
     }
 
@@ -96,41 +107,41 @@ var progress = function(distance) {                                             
 
 };
 
-
-
-var getFriend = function(friendNumber) {                                                                                // shortens JSON data call with incremented var
-
-    friend = characters.goodGuys[friendNumber];
-
-    return(friend);
-};
-
 var friend = {
     increment: function(number) {friendNumber = number + 1;},
     meet: function(number) {
         var character = characters.goodGuys[friendNumber];
         if (character.name === "Munchkins") {
-            say("At " + character.location + ", I met " + character.number + " " + character.name + " with " + character.characteristic + "."); return;
+            say("Standing before me were " + character.number + " " + character.name + " with " + character.characteristic
+                + ". \"Welcome to " + character.location + ",\" they cheered."); return;
         } if (character.name === "Glinda the Good Witch") {
-            say("Suddenly, from " + character.location + ", " + character.name + " appeared in her " + character.characteristic + "."); return;
+            say("Suddenly, from " + character.location + ", " + character.name + " appeared in her " + character.characteristic + ".");
+            rubySlippers.add("flick of her wand");
+            return;
         } else {
             say("At " + character.location + ", we met " + character.name + " with the " + character.characteristic + ".");
         }
     }
 
-}
+};
+
+
 
 // Begin storytelling
 
 
+
+say("When the clouds cleared, Toto and I cautiously peeked out of the front door.");
 progress(stopNumber);
 friend.meet(friendNumber);
 friend.increment(friendNumber);
 
 friend.meet(friendNumber);
 friend.increment(friendNumber);
-progress(stopNumber);
 
+readyToGo(items);
+
+progress(stopNumber);
 friend.meet(friendNumber);
 friend.increment(friendNumber);
 progress(stopNumber);
