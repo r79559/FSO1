@@ -12,27 +12,32 @@ var characters = {
             "name": "Munchkins",
             "from": "Munchkinland",
             "number": 100,
-            "characteristic": "red cheeks"
+            "characteristic": "red cheeks",
+            "journeyman": false
         },
         {
             "name": "Glinda the Good Witch",
             "direction": "North",
-            "characteristic": "magical bubble"
+            "characteristic": "magical bubble",
+            "journeyman": false
         },
         {
             "name": "The Scarecrow",
             "need": "a brain",
-            "characteristic": "straw hair"
+            "characteristic": "straw hair",
+            "journeyman": true
         },
         {
             "name": "The Tin Man",
             "need": "a heart",
-            "characteristic": "funnel hat"
+            "characteristic": "funnel hat",
+            "journeyman": true
         },
         {
             "name": "The Cowardly Lion",
             "need": "the nerve",
-            "characteristic": "fluffy mane"
+            "characteristic": "fluffy mane",
+            "journeyman": true
         }
     ],
 
