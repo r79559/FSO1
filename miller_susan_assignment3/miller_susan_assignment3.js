@@ -18,10 +18,10 @@ var incrementFriend = function(number) {friendNumber = number + 1;};            
 var wizardAndWitch = {
     witch: true,
     wizard: true,
-    getWickedWitch: function () {                                                                          // This is my Boolean function.
-        if (this.witch && this.wizard) {                                                                                    // Are witch and wizard both present?
+    getWickedWitch: function () {                                                                                       // This is my Boolean function.
+        if (this.witch && this.wizard) {                                                                                // Are witch and wizard both present?
             say("There was the witch! \"Lion, hand me that bucket of water!\" I yelled, then I threw it on the witch and she melted away.");
-            wizardAndWitch.witch = false;                                                                                    // Witch has melted; reassign variable.
+            wizardAndWitch.witch = false;                                                                               // Witch has melted; reassign variable.
             status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?";
         } else {
             status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
@@ -29,20 +29,36 @@ var wizardAndWitch = {
         return status;
     },
 
-    askTheWizard: function () {
+    askTheWizard: function (go) {                                                                                       //
+        if (go = true) {
         say("\"I'd like to go home, sir.\"");
-        for (x = 0; x < characters.goodGuys.length; x++) {
-            var char = characters.goodGuys[x];
-            if (char.journeyman === true) {
-                say("\"I need " + char.need + ",\" said " + char.name + ".");
+        for (x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
+            var character = characters.goodGuys[x];
+            if (character.journeyman === true) {
+                say("\"I need " + character.need + ",\" said " + character.name + ".");
             }
         };
         wishesStated = true;
-        return wishesStated;
+        } else {
+        wishesStated = false;
+        }
+        return wishesStated;                                                                                            // Boolean return
     },
 
-    getNeeds: function () {
-        if (this.askTheWizard() === true) { say("Voila!"); }
+    getNeeds: function (value) {                                                                                        // Method: Procedure, Argument: Boolean
+        if (value === true) { say("Then you shall have it!"); }
+        else { say("Speak up!")}
+    }
+};
+
+var rubySlippers =  {
+    color: "red",
+    heelClicks: 3,
+    phrase: "There's no place like home!",
+    action: function() {
+
+        say(this.color);
+
     }
 };
 
@@ -54,7 +70,7 @@ var progress = function(distance) {                                             
 
         incrementStop(stopNumber);
 
-    } if (distance < 1) {
+    } else if (distance < 1) {
 
         say("I don't think we're in Kansas anymore, Toto!");
 
@@ -85,18 +101,25 @@ var getFriend = function(friendNumber) {                                        
 progress(stopNumber);
 say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
 incrementFriend(friendNumber);
+
 say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
 incrementFriend(friendNumber);
 progress(stopNumber);
+
 say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
 incrementFriend(friendNumber);
 progress(stopNumber);
+
 say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
 incrementFriend(friendNumber);
 progress(stopNumber);
+
 say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
 incrementFriend(friendNumber);
 progress(stopNumber);
+
 say(wizardAndWitch.getWickedWitch());
+
 say("What do you need?");
-wizardAndWitch.getNeeds();
+
+wizardAndWitch.getNeeds(wizardAndWitch.askTheWizard(true));

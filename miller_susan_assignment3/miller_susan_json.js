@@ -22,6 +22,12 @@ var characters = {
             "journeyman": false
         },
         {
+            "name": "Dorothy",
+            "need": "to go home",
+            "characteristic": "ruby slippers",
+            "journeyman": false
+        },
+        {
             "name": "The Scarecrow",
             "need": "a brain",
             "characteristic": "straw hair",
