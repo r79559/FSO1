@@ -19,19 +19,19 @@ var wizardAndWitch = {
     witch: true,
     wizard: true,
 
-    getWickedWitch: function (witch, wizard) {                                                                          // This is my Boolean function.
+    getWickedWitch: function () {                                                                          // This is my Boolean function.
 
     if (this.witch && this.wizard) {                                                                                    // Are witch and wizard both present?
 
         say("There was the witch! \"Lion, hand me that bucket of water!\" I yelled, then I threw it on the witch and she melted away.");
         wizardAndWitch.witch = false;                                                                                    // Witch has melted; reassign variable.
-        status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?";
+        var status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?";
 
     } else {
 
-    status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
+        var status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
 
-    };
+    }
 
     return status;
     },
@@ -39,7 +39,7 @@ var wizardAndWitch = {
     seeTheWizard: function () {
 
     }
-}
+};
 
 var progress = function(distance) {                                                                                     // function that deals with distance
 
@@ -48,8 +48,6 @@ var progress = function(distance) {                                             
         say("We've traveled " + distance + " miles.  We only have " + (journeyLength - distance) + " to go!");
 
         incrementStop(stopNumber);
-
-        return distance;
 
     } if (distance < 1) {
 
@@ -63,10 +61,11 @@ var progress = function(distance) {                                             
 
     }
 
+    return distance;
 
 };
 
-var getFriend = function(number) {                                                                                      // shortens JSON data call with incremented var
+var getFriend = function(friendNumber) {                                                                                // shortens JSON data call with incremented var
 
     var friend = characters.goodGuys[friendNumber];
 
