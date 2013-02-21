@@ -12,8 +12,8 @@ var blockLength = 3;                                                            
 var incrementStop = function(number) {stopNumber = number + blockLength;};                                              // function to increment stopNumber var
 var journeyLength = 10;                                                                                                 // total length of journey
 
-var friendNumber = 0;                                                                                                   // determines which friend is focus
-var incrementFriend = function(number) {friendNumber = number + 1;};                                                    // increments friendNumber, moves to next object
+var friendNumber = 1;                                                                                                   // determines which friend is focus
+// var incrementFriend = function(number) {friendNumber = number + 1;};                                                    // increments friendNumber, moves to next object
 
 var wizardAndWitch = {
     witch: true,
@@ -29,7 +29,8 @@ var wizardAndWitch = {
         return status;
     },
 
-    askTheWizard: function (go) {                                                                                       //
+    askTheWizard: function (go) {
+        say("\"What do you want?\"");                                                                                  //
         if (go = true) {
         say("\"I'd like to go home, sir.\"");
         for (x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
@@ -64,9 +65,15 @@ var rubySlippers =  {
 
 var progress = function(distance) {                                                                                     // function that deals with distance
 
-    if ((distance > 1) && (distance < journeyLength)) {                                                                 // Boolean comparison
+    if ((journeyLength - distance === 1)) {
 
-        say("We've traveled " + distance + " miles.  We only have " + (journeyLength - distance) + " to go!");
+        say("The sign says we're " + (journeyLength - distance ) + " mile from The Emerald City.  We're almost there!");
+
+        incrementStop(stopNumber);
+
+    } else if ((distance > 1) && (distance < journeyLength)) {                                                                 // Boolean comparison
+
+        say("The sign says we're " + (journeyLength - distance) + " miles from The Emerald City.  Let's go!");
 
         incrementStop(stopNumber);
 
@@ -78,13 +85,15 @@ var progress = function(distance) {                                             
 
     } else {
 
-        say("We have arrived!");
+        say("Look!  It's the Emerald City!");
 
     }
 
     return distance;
 
 };
+
+
 
 var getFriend = function(friendNumber) {                                                                                // shortens JSON data call with incremented var
 
@@ -93,33 +102,45 @@ var getFriend = function(friendNumber) {                                        
     return(friend);
 };
 
+var friend = {
+    increment: function(number) {friendNumber = number + 1;},
+    meet: function(number) {
+        var character = characters.goodGuys[friendNumber];
+        if (character.name === "Munchkins") {
+            say("At " + character.location + ", I met " + character.number + " " + character.name + " with " + character.characteristic + "."); return;
+        } if (character.name === "Glinda the Good Witch") {
+            say("Suddenly, from " + character.location + ", " + character.name + " appeared in her " + character.characteristic + "."); return;
+        } else {
+            say("At " + character.location + ", we met " + character.name + " with the " + character.characteristic + ".");
+        }
+    }
 
+}
 
 // Begin storytelling
 
 
 progress(stopNumber);
-say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
-incrementFriend(friendNumber);
+friend.meet(friendNumber);
+friend.increment(friendNumber);
 
-say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
-incrementFriend(friendNumber);
+friend.meet(friendNumber);
+friend.increment(friendNumber);
 progress(stopNumber);
 
-say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
-incrementFriend(friendNumber);
+friend.meet(friendNumber);
+friend.increment(friendNumber);
 progress(stopNumber);
 
-say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
-incrementFriend(friendNumber);
+
+friend.meet(friendNumber);
+friend.increment(friendNumber);
 progress(stopNumber);
 
-say("We met " + getFriend(friendNumber).name + " with the " + getFriend(friendNumber).characteristic + ".");
-incrementFriend(friendNumber);
+friend.meet(friendNumber);
+friend.increment(friendNumber);
 progress(stopNumber);
 
 say(wizardAndWitch.getWickedWitch());
-
-say("What do you need?");
 
 wizardAndWitch.getNeeds(wizardAndWitch.askTheWizard(true));
