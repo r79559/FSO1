@@ -22,17 +22,17 @@ var wizardAndWitch = {
         if (this.witch && this.wizard) {                                                                                // Are witch and wizard both present?
             say("There was the witch! \"Lion, hand me that bucket of water!\" I yelled, then I threw it on the witch and she melted away.");
             wizardAndWitch.witch = false;                                                                               // Witch has melted; reassign variable.
-            status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?";
+            var status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?";
         } else {
-            status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
+            var status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
         }
         return status;
     },
 
     askTheWizard: function (go) {
         say("\"What do you want?\"");                                                                                  //
-        if (go = true) {
-        for (x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
+        if (go === true) {
+        for (var x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
             var character = characters.goodGuys[x];
             if (character.journeyman === true) {
                 if (character.name === "Dorothy") {
@@ -42,9 +42,9 @@ var wizardAndWitch = {
                 }
             }
         }
-        wishesStated = true;
+        var wishesStated = true;
         } else {
-        wishesStated = false;
+        var wishesStated = false;
         }
         return wishesStated;                                                                                            // Boolean return
     },
@@ -59,10 +59,12 @@ var rubySlippers =  {
     color: "red",
     heelClicks: 3,
     phrase: "There's no place like home!",
-    add: function() {
-        var newItems = items.push("the ruby slippers");
-        return newItems;
+    add: function(action) {
+        say("With a " + action + ", my feet began to tingle.  Looking down, I saw a glittering pair of " + this.color + " ruby slippers.");
+        items.push("the ruby slippers");
+        return items;
     },
+//    stepAway,
     goHome: function(clicks) {
 
         say(this.color);
@@ -71,11 +73,11 @@ var rubySlippers =  {
 
 
 function readyToGo(things) {
-    var i=0
+    var i=0;
     say("I gathered: ");
-    while (i < items.length) {say(things[i]); i++; };
+    while (i < items.length) {say(things[i]); i++; }
     say("And with a deep breath, I was off.")
-};
+}
 
 var progress = function(distance) {                                                                                     // function that deals with distance
 
@@ -110,14 +112,13 @@ var progress = function(distance) {                                             
 var friend = {
     increment: function(number) {friendNumber = number + 1;},
     meet: function(number) {
-        var character = characters.goodGuys[friendNumber];
+        var character = characters.goodGuys[number];
         if (character.name === "Munchkins") {
             say("Standing before me were " + character.number + " " + character.name + " with " + character.characteristic
                 + ". \"Welcome to " + character.location + ",\" they cheered."); return;
         } if (character.name === "Glinda the Good Witch") {
             say("Suddenly, from " + character.location + ", " + character.name + " appeared in her " + character.characteristic + ".");
             rubySlippers.add("flick of her wand");
-            return;
         } else {
             say("At " + character.location + ", we met " + character.name + " with the " + character.characteristic + ".");
         }
