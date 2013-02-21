@@ -9,9 +9,15 @@ var characters = {
     "goodGuys": [
 
         {
-            "name": "Dorothy",
-            "need": "a home",
-            "characteristic": "beautiful voice"
+            "name": "Munchkins",
+            "from": "Munchkinland",
+            "number": 100,
+            "characteristic": "red cheeks"
+        },
+        {
+            "name": "Glinda the Good Witch",
+            "direction": "North",
+            "characteristic": "magical bubble"
         },
         {
             "name": "The Scarecrow",
@@ -27,17 +33,6 @@ var characters = {
             "name": "The Cowardly Lion",
             "need": "the nerve",
             "characteristic": "fluffy mane"
-        },
-        {
-            "name": "Munchkins",
-            "from": "Munchkinland",
-            "number": 100,
-            "characteristic": "red cheeks"
-        },
-        {
-            "name": "Glinda the Good Witch",
-            "direction": "North",
-            "characteristic": "magical bubble"
         }
     ],
 
