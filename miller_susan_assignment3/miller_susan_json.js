@@ -11,7 +11,7 @@ var characters = {
             "name": "Dorothy",
             "need": "to go home",
             "characteristic": "ruby slippers",
-            "journeyman": false
+            "journeyman": true
         },
         {
             "name": "Munchkins",

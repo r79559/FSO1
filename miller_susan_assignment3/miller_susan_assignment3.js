@@ -32,13 +32,16 @@ var wizardAndWitch = {
     askTheWizard: function (go) {
         say("\"What do you want?\"");                                                                                  //
         if (go = true) {
-        say("\"I'd like to go home, sir.\"");
         for (x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
             var character = characters.goodGuys[x];
             if (character.journeyman === true) {
+                if (character.name === "Dorothy") {
+                    say("\"Please, sir, Mr. Oz, sir, I'd like " + character.need + ", sir,\" " + character.name + " pleaded.");
+                } else {
                 say("\"I need " + character.need + ",\" said " + character.name + ".");
+                }
             }
-        };
+        }
         wishesStated = true;
         } else {
         wishesStated = false;
