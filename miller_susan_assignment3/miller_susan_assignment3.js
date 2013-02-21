@@ -34,11 +34,11 @@ var wizardAndWitch = {
     };
 
     return status;
-    }
+    },
 
     seeTheWizard: function () {
 
-    },
+    }
 }
 
 var progress = function(distance) {                                                                                     // function that deals with distance
