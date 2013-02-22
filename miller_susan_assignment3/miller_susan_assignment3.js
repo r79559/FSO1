@@ -70,13 +70,6 @@ var friend = {
 
 };
 
-function readyToGo(things) {
-    var i=0;
-    say("I gathered: ");
-    while (i < items.length) {say(things[i]); i++; }
-    say("And with a deep breath, I was off.")
-}
-
 var enemy = {
     getEnemy: function(name, characteristic, phrase)
     {
@@ -106,7 +99,7 @@ var progress = function(distance) {                                             
 
     } else if ((distance > 1) && (distance < journeyLength)) {                                                                 // Boolean comparison
 
-        say("The sign said we were " + (journeyLength - distance) + " miles from The Emerald City.  \"Let's go!\"");
+        say("The sign said we were " + (journeyLength - distance) + " miles from The Emerald City.  \"Let's go see The Wizard!\"");
 
         incrementStop(stopNumber);
 
@@ -173,31 +166,43 @@ var wizardAndWitch = {
     }
 };
 
+var move = {
+    readyToGo: function(things) {
+        var i=0;
+        say("I gathered: ");
+        while (i < items.length) {say(things[i]); i++; }
+                say("And with a deep breath, I was off.")
+        },
+    routineA: function() {
+        progress(stopNumber);
+        friend.meet(friendNumber);
+        friend.increment(friendNumber);
+        },
+    oz: function() {
+        wizardAndWitch.arrive("skipped");
+        say(wizardAndWitch.getWickedWitch(true));
+        wizardAndWitch.getNeeds(wizardAndWitch.askTheWizard(true));
+        }
+
+}
+
 // Begin storytelling
 
 
 
 say("When the clouds cleared, Toto and I cautiously peeked out of the front door.");
-progress(stopNumber);
-friend.meet(friendNumber);
-friend.increment(friendNumber);
+move.routineA();
 friend.meet(friendNumber);
 enemy.getEnemy("The Wicked Witch of the West", "hideous green skin", "\"I'll get you, my pretty!\"");
 enemy.meetEnemy(true);
 shoes.stepAway("glitter");
-readyToGo(items);
+move.readyToGo(items);
 friend.increment(friendNumber);
 friend.meet(friendNumber);
 friend.increment(friendNumber);
+move.routineA();
+move.routineA();
 progress(stopNumber);
-friend.meet(friendNumber);
-friend.increment(friendNumber);
-progress(stopNumber);
-friend.meet(friendNumber);
-friend.increment(friendNumber);
-progress(stopNumber);
-wizardAndWitch.arrive("skipped");
-say(wizardAndWitch.getWickedWitch(true));
-wizardAndWitch.getNeeds(wizardAndWitch.askTheWizard(true));
+move.oz();
 shoes.goHome(shoes.rubySlippers.heelClicks);
 say("And, just like that, I was home!");
