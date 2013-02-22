@@ -3,7 +3,7 @@
 // Author: Susan R. Miller
 // Project: Assignment 3
 // Course: SDI 1302
-// Title: The Little Flowchart That Could
+// Title: The JavaScript Wizard of Oz
 
 var say = function(message) { console.log(message); };                                                                  // for ease.
 
