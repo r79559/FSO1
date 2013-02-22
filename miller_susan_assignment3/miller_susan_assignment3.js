@@ -12,62 +12,30 @@ var blockLength = 3;                                                            
 var incrementStop = function(number) {stopNumber = number + blockLength;};                                              // function to increment stopNumber var
 var journeyLength = 10;                                                                                                 // total length of journey
 var items = ["my basket", "my dog Toto"];
-var friendNumber = 1;                                                                                                   // determines which friend is focus
-// var incrementFriend = function(number) {friendNumber = number + 1;};                                                    // increments friendNumber, moves to next object
+var friendNumber = 1;
 
-var wizardAndWitch = {
-    witch: true,
-    wizard: true,
-    getWickedWitch: function () {                                                                                       // This is my Boolean function.
-        if (this.witch && this.wizard) {                                                                                // Are witch and wizard both present?
-            say("There was the witch! \"Lion, hand me that bucket of water!\" I yelled, then I threw it on the witch and she melted away.");
-            wizardAndWitch.witch = false;                                                                               // Witch has melted; reassign variable.
-            var status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?";
-        } else {
-            var status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
-        }
-        return status;
-    },
 
-    askTheWizard: function (go) {
-        say("\"What do you want?\"");                                                                                  //
-        if (go === true) {
-        for (var x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
-            var character = characters.goodGuys[x];
-            if (character.journeyman === true) {
-                if (character.name === "Dorothy") {
-                    say("\"Please, sir, Mr. Oz, sir, I'd like " + character.need + ", sir,\" " + character.name + " pleaded.");
-                } else {
-                say("\"I need " + character.need + ",\" said " + character.name + ".");
-                }
-            }
-        }
-        var wishesStated = true;
-        } else {
-        var wishesStated = false;
-        }
-        return wishesStated;                                                                                            // Boolean return
-    },
+var path = {};
 
-    getNeeds: function (value) {                                                                                        // Method: Procedure, Argument: Boolean
-        if (value === true) { say("Then you shall have it!"); }
-        else { say("Speak up!")}
-    }
-};
-
-var rubySlippers =  {
-    color: "red",
-    heelClicks: 3,
-    phrase: "There's no place like home!",
+var shoes = {
+    rubySlippers: {
+        name: "ruby slippers",
+        descriptive: "glittering",
+        color: "red",
+        heelClicks: 3,
+        phrase: "There's no place like home!"},
     add: function(action) {
-        say("With a " + action + ", my feet began to tingle.  Looking down, I saw a glittering pair of " + this.color + " ruby slippers.");
+        say("With a " + action + ", my feet began to tingle.  Looking down, I saw a " + this.rubySlippers.descriptive + " pair of " + this.rubySlippers.color + " " + this.rubySlippers.name + ".");
         items.push("the ruby slippers");
         return items;
     },
-//    stepAway,
-    goHome: function(clicks) {
+    stepAway: function(path) {
 
-        say(this.color);
+    },
+    goHome: function(repeat) {
+        repeat = this.rubySlippers.heelClicks;
+
+        ;
     }
 };
 
@@ -99,13 +67,15 @@ var progress = function(distance) {                                             
 
         incrementStop(stopNumber);
 
+    } else if (distance >= journeyLength) {
+
+        return journeyLength;
+
     } else {
 
         say("\"Look!\" I exclaimed,  \"It's the Emerald City!\"");
 
     }
-
-    return distance;
 
 };
 
@@ -118,7 +88,7 @@ var friend = {
                 + ". \"Welcome to " + character.location + ",\" they cheered."); return;
         } if (character.name === "Glinda the Good Witch") {
             say("Suddenly, from " + character.location + ", " + character.name + " appeared in her " + character.characteristic + ".");
-            rubySlippers.add("flick of her wand");
+            shoes.add("flick of her wand");
         } else {
             say("At " + character.location + ", we met " + character.name + " with the " + character.characteristic + ".");
         }
@@ -126,7 +96,45 @@ var friend = {
 
 };
 
+var wizardAndWitch = {
+    witch: true,
+    wizard: true,
+    getWickedWitch: function () {                                                                                       // This is my Boolean function.
+        if (this.witch && this.wizard) {                                                                                // Are witch and wizard both present?
+            say("There was the witch! \"Lion, hand me that bucket of water!\" I yelled, then I threw it on the witch and she melted away.");
+            wizardAndWitch.witch = false;                                                                               // Witch has melted; reassign variable.
+            var status = "Oh, Wizard, now that the Witch of the West is dead, will you help us?  We've traveled " + progress(stopNumber) + " miles to see you!";
+        } else {
+            var status = "I turned to the wizard and asked, \"Oh, great and powerful Oz, will you help us?\"";
+        }
+        return status;
+    },
 
+    askTheWizard: function (go) {
+        say("\"What do you want?\"");                                                                                  //
+        if (go === true) {
+            for (var x = 0; x < characters.goodGuys.length; x++) {                                                              // For loop
+                var character = characters.goodGuys[x];
+                if (character.journeyman === true) {
+                    if (character.name === "Dorothy") {
+                        say("\"Please, sir, Mr. Oz, sir, I'd like " + character.need + ", sir,\" " + character.name + " pleaded.");
+                    } else {
+                        say("\"I need " + character.need + ",\" said " + character.name + ".");
+                    }
+                }
+            }
+            var wishesStated = true;
+        } else {
+            var wishesStated = false;
+        }
+        return wishesStated;                                                                                            // Boolean return
+    },
+
+    getNeeds: function (value) {                                                                                        // Method: Procedure, Argument: Boolean
+        if (value === true) { say("Then you shall have it!"); }
+        else { say("Speak up!")}
+    }
+};
 
 // Begin storytelling
 
@@ -159,3 +167,5 @@ progress(stopNumber);
 say(wizardAndWitch.getWickedWitch());
 
 wizardAndWitch.getNeeds(wizardAndWitch.askTheWizard(true));
+
+shoes.goHome();

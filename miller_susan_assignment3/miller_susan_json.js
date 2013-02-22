@@ -48,22 +48,5 @@ var characters = {
             "characteristic": "fluffy mane",
             "journeyman": true
         }
-    ],
-
-    "badGuys": [
-
-        {
-            "name": "Flying Monkeys",
-            "number": 6,
-            "characteristic": "creepy wings"
-        },
-        {
-            "name": "Wicked Witch",
-            "direction": "West",
-            "characteristic": "green pallor"
-        },
-        {
-            "name": "The Great and Powerful Oz"
-        }
     ]
 };
