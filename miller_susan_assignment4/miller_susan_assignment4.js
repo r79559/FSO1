@@ -43,3 +43,26 @@ emailAddress.isValidEmail("satr@mac.com");
 emailAddress.isValidEmail("satr@kiwi.co.nz");
 emailAddress.isValidEmail("donkeykong.com");
 
+// Is the string a URL? (Does it start with http: or https:?)
+
+var url = {
+    isValidUrl: function (url) {
+        var end = (url.indexOf(":") + 1);
+        if (url.substr(0,end) === "http:") {
+            var validUrl = true;
+            console.log(url + " appears to be a valid URL.");
+        } else if (url.substr(0,end) === "https:") {
+            var validUrl = true;
+            console.log(url + " appears to be a valid URL.");
+        } else {
+            var validUrl = false;
+            console.log(url + " does not appear to be a valid URL.  Please use http:// or https:// format.");
+        }
+        return validUrl;
+    }
+};
+
+url.isValidUrl("http://www.mac.com");
+url.isValidUrl("https://www.mac.com");
+url.isValidUrl("www.mac.com");
+
