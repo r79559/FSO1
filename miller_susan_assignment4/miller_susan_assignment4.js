@@ -78,10 +78,11 @@ var caseManip = {
                 var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);
                 titled.push(newWord)
             }
-        var stringIt = titled.toString();
-        var cappedTitle = stringIt.replace(",", " ");
+        var cappedTitle = titled.join(" ");
         console.log(cappedTitle);
     }
 };
 
-caseManip.titleCase("it's a dog eat dog world");
+caseManip.titleCase("it's a dog eat dog world, and I'm wearing milkbone underwear.");
+
+
