@@ -190,30 +190,19 @@ arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 7);
 
 var arrayAnalysis2 = {                              // Can be combined into above arrayAnalysis object above after assignment graded
     arrayTotal: function (array) {
-        var numArray = [];
-        var notNums = [];
+        var total = 0;
         for (x = 0; x < array.length; x++) {
             var value = array[x];
             if ((value !== false) && (value !== true)) {
                 var isIt = isNaN(value);
                 if (isIt === false) {
-                    numArray.push(value);
-                } else {
-                    notNums.push(value);
+                    total += value;
                 }
-            } else {
-                notNums.push(value);
             }
         }
-
-       /* Figure out how to make the math happen here */
-
-
-        console.log(array.length)
-        console.log(numArray);
-        console.log(notNums);
-
+        console.log("The total of the numbers in your array is: " + total);
     }
 }
 
 arrayAnalysis2.arrayTotal([15, 37, "dog", false, "cat", 9, true]);
+
