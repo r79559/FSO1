@@ -4,17 +4,21 @@
 // Course: SDI 1302
 // Assignment #4: Code Library
 
-//  Does a string follow a 123-456-7890 pattern like a phone number?
+
+// **** STRING FUNCTIONS **** //
+
+
+//  1. Does a string follow a 123-456-7890 pattern like a phone number?
 
 var phoneNumber = {
     isValidNumber: function (phoneNumber) {
         if ((phoneNumber.charAt(3) === "-") && (phoneNumber.charAt(7) === "-")) {
             var validNumber = true;
-            console.log("Thank you for entering a valid phone number, " + phoneNumber + ".");
+            console.log("Thank you for entering a valid phone number, " + phoneNumber + ".");                           // can be removed after grading
             return validNumber;
         } else {
             var validNumber = false;
-            console.log(phoneNumber + " is not a valid phone number. Please enter your number using xxx-xxx-xxxx format.");
+            console.log(phoneNumber + " is not a valid phone number. Please enter your number using xxx-xxx-xxxx format.");      // can be removed after grading
             return validNumber;
         }
     }
@@ -23,17 +27,17 @@ var phoneNumber = {
 phoneNumber.isValidNumber("212-555-1212");
 phoneNumber.isValidNumber("212.555.1212");
 
-//  Does a string follow an aaa@bbb.ccc pattern like an email address?
+//  2. Does a string follow an aaa@bbb.ccc pattern like an email address?
 
 var emailAddress = {
     isValidEmail: function (email) {
         if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {
             var validEmail = true;
-            console.log(email + " appears to be a valid email address.");
+            console.log(email + " appears to be a valid email address.");                                               // can be removed after grading
             return validEmail;
         } else {
             var validEmail = false;
-            console.log(email + " does not appear to be a valid email address.  Please try again.");
+            console.log(email + " does not appear to be a valid email address.  Please try again.");                    // can be removed after grading
             return validEmail;
         }
     }
@@ -43,17 +47,17 @@ emailAddress.isValidEmail("satr@mac.com");
 emailAddress.isValidEmail("satr@kiwi.co.nz");
 emailAddress.isValidEmail("donkeykong.com");
 
-// Is the string a URL? (Does it start with http: or https:?)
+// 3. Is the string a URL? (Does it start with http: or https:?)
 
 var url = {
     isValidUrl: function (url) {
 
-        if (url.startsWith("http://") || url.startsWith("https://")) {                          // Tests starting letters of each string
+        if (url.startsWith("http://") || url.startsWith("https://")) {
             var validUrl = true;
-            console.log(url + " appears to be a valid URL.");
+            console.log(url + " appears to be a valid URL.");                                                           // can be removed after grading
         } else {
             var validUrl = false;
-            console.log(url + " does not appear to be a valid URL.  Please use http:// or https:// format.");
+            console.log(url + " does not appear to be a valid URL.  Please use http:// or https:// format.");           // can be removed after grading
         }
         return validUrl;
     }
@@ -64,22 +68,22 @@ url.isValidUrl("https://www.domain.com");
 url.isValidUrl("www.domain.com");
 
 
-//  Title-case a string (split into words, then uppercase the first letter of each word)
+//  4. Title-case a string (split into words, then uppercase the first letter of each word)
 
 var caseManip = {
     titleCase: function (title) {
         var titled = [];
-        var words = title.split(" ");                                   // Splits string into array
-            for (x = 0; x < words.length; x++) {                        // Cycles through words in array
+        var words = title.split(" ");                                                    // Splits string into array
+            for (x = 0; x < words.length; x++) {                                         // Cycles through words in array
                 var breakOut = words[x];
-                var firstLetter = breakOut.slice(0,1);                  // Pulls first letter from word
-                var restOfWord = breakOut.slice(1,breakOut.length);     // Places rest of word in own var
-                var capped = "";                                        // Creates an empty string to concat into
-                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);    // Concats the two parts of the word together, with first part capped
-                titled.push(newWord)                                    // Adds now capped word into array
+                var firstLetter = breakOut.slice(0,1);                                   // Pulls first letter from word
+                var restOfWord = breakOut.slice(1,breakOut.length);                      // Places rest of word in own var
+                var capped = "";                                                         // Creates an empty string to concat into
+                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);     // Concats the two parts of the word together, with first part capped
+                titled.push(newWord)                                                     // Adds now capped word into array
             }
-        var cappedTitle = titled.join(" ");                             // Joins words in array together with a space between
-        console.log(cappedTitle);
+        var cappedTitle = titled.join(" ");                                              // Joins words in array together with a space between
+        console.log(cappedTitle);                                                                                       // can be removed after grading
         return cappedTitle;
     }
 };
@@ -87,17 +91,55 @@ var caseManip = {
 caseManip.titleCase("it's a dog eat dog world, and I'm wearing milkbone underwear.");
 
 
-//   Given a string that is a list of things separated by a given string, as well as another string separator,
-//   return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".
+//   5. Given a string that is a list of things separated by a given string, as well as another string separator,
+//      return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".
 
 var stringSeparator = {
     switch: function (string, originalSeparator, newSeparator) {
         var words = string.split(originalSeparator);
         var newString = words.join(newSeparator);
-        console.log("\"" + string + "\" is now \"" + newString + ".\"");
+        console.log("\"" + string + "\" is now \"" + newString + ".\"");                                                // can be removed after grading
         return newString;
+    }
+};
+
+stringSeparator.switch("dogs, cats, fish, bones", ",", " -");
+
+
+// **** NUMBER FUNCTIONS **** //
+
+
+//  6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
+
+var decimalPlace = {
+    setToTwo: function (number) {
+        var moneyNum = number.toFixed(2);
+        console.log(number + " is now " + moneyNum);                                                                    // can be removed after grading
+        return moneyNum;
+    }
+};
+
+decimalPlace.setToTwo(36);
+decimalPlace.setToTwo(3.14159);
+decimalPlace.setToTwo(796.309);
+
+
+// 7. Fuzzy-match a number: is the number above or below a number within a certain percent?
+
+var numberAnalysis = {
+    fuzzyMatch: function (a, b, decimalPercent) {
+        var diff = Math.abs(a - b);
+        if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
+            var withinPercent = true;
+            console.log(a + " and " + b + " are within " + decimalPercent + "% of each other.");
+        } else {
+            var withinPercent = false;
+            console.log(a + " and " + b + " are not within " + decimalPercent + "% of each other.");
+        }
+        return withinPercent;
     }
 }
 
-stringSeparator.switch("dogs, cats, fish, bones", ",", " -");
+numberAnalysis.fuzzyMatch(36,42,.15);
+numberAnalysis.fuzzyMatch(75,23,.55);
 
