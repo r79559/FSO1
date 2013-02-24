@@ -47,11 +47,8 @@ emailAddress.isValidEmail("donkeykong.com");
 
 var url = {
     isValidUrl: function (url) {
-        var end = (url.indexOf(":") + 1);
-        if (url.substr(0,end) === "http:") {
-            var validUrl = true;
-            console.log(url + " appears to be a valid URL.");
-        } else if (url.substr(0,end) === "https:") {
+
+        if (url.startsWith("http://") || url.startsWith("https://")) {
             var validUrl = true;
             console.log(url + " appears to be a valid URL.");
         } else {
@@ -62,7 +59,7 @@ var url = {
     }
 };
 
-url.isValidUrl("http://www.mac.com");
-url.isValidUrl("https://www.mac.com");
-url.isValidUrl("www.mac.com");
+url.isValidUrl("http://www.domain.com");
+url.isValidUrl("https://www.domain.com");
+url.isValidUrl("www.domain.com");
 
