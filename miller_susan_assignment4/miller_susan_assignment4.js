@@ -124,7 +124,7 @@ decimalPlace.setToTwo(3.14159);
 decimalPlace.setToTwo(796.309);
 
 
-// 7. Fuzzy-match a number: is the number above or below a number within a certain percent?
+//  7. Fuzzy-match a number: is the number above or below a number within a certain percent?
 
 var numberAnalysis = {
     fuzzyMatch: function (a, b, decimalPercent) {
@@ -142,4 +142,7 @@ var numberAnalysis = {
 
 numberAnalysis.fuzzyMatch(36,42,.15);
 numberAnalysis.fuzzyMatch(75,23,.55);
+
+
+//  8. Find the number of hours or days difference between two dates.
 
