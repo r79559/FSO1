@@ -169,3 +169,20 @@ numberAnalysis2.stringToNum("37.4");
 numberAnalysis2.stringToNum("42");
 numberAnalysis2.stringToNum("Bob");
 
+
+// **** ARRAY FUNCTIONS **** //
+
+// 10. Find the smallest value in an array that is greater than a given number
+
+var arrayAnalysis = {
+    arrayValue: function (array, value) {
+        array.push(value);                           // Adds the given value to the array
+        array.sort(function (a,b) {return a - b;});  // Sorts the array numerically
+        itemsLess = array.slice(0,array.indexOf(value));              // Finds the new index of the initial value to be measured by
+        console.log(itemsLess + " are less than " + value);
+        return itemsLess;
+    }
+}
+
+arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 7);
+
