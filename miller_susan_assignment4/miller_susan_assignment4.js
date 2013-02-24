@@ -172,7 +172,7 @@ numberAnalysis2.stringToNum("Bob");
 
 // **** ARRAY FUNCTIONS **** //
 
-// 10. Find the smallest value in an array that is greater than a given number
+//  10. Find the smallest value in an array that is greater than a given number
 
 var arrayAnalysis = {
     arrayValue: function (array, value) {
@@ -186,3 +186,34 @@ var arrayAnalysis = {
 
 arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 7);
 
+//  11. Find the total value of just the numbers in an array, even if some of the items are not numbers.
+
+var arrayAnalysis2 = {
+    arrayTotal: function (array) {
+        var numArray = [];
+        var notNums = [];
+        for (x = 0; x < array.length; x++) {
+            var value = array[x];
+            if ((value !== false) && (value !== true)) {
+                var isIt = isNaN(value);
+                if (isIt === false) {
+                    numArray.push(value);
+                } else {
+                    notNums.push(value);
+                }
+            } else {
+                notNums.push(value);
+            }
+        }
+
+       /* Figure out how to make the math happen here */
+
+
+        console.log(array.length)
+        console.log(numArray);
+        console.log(notNums);
+
+    }
+}
+
+arrayAnalysis2.arrayTotal([15, 37, "dog", false, "cat", 9, true]);
