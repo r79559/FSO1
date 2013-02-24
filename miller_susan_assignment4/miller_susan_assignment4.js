@@ -63,3 +63,25 @@ url.isValidUrl("http://www.domain.com");
 url.isValidUrl("https://www.domain.com");
 url.isValidUrl("www.domain.com");
 
+
+//  Title-case a string (split into words, then uppercase the first letter of each word)
+
+var caseManip = {
+    titleCase: function (title) {
+        var titled = [];
+        var words = title.split(" ");
+            for (x = 0; x < words.length; x++) {
+                var breakOut = words[x];
+                var firstLetter = breakOut.slice(0,1);
+                var restOfWord = breakOut.slice(1,breakOut.length);
+                var capped = "";
+                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);
+                titled.push(newWord)
+            }
+        var stringIt = titled.toString();
+        var cappedTitle = stringIt.replace(",", " ");
+        console.log(cappedTitle);
+    }
+};
+
+caseManip.titleCase("it's a dog eat dog world");
