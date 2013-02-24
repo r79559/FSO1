@@ -188,7 +188,7 @@ arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 7);
 
 //  11. Find the total value of just the numbers in an array, even if some of the items are not numbers.
 
-var arrayAnalysis2 = {
+var arrayAnalysis2 = {                              // Can be combined into above arrayAnalysis object above after assignment graded
     arrayTotal: function (array) {
         var numArray = [];
         var notNums = [];
