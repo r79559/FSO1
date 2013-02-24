@@ -25,3 +25,21 @@ phoneNumber.isValidNumber("212.555.1212");
 
 //  Does a string follow an aaa@bbb.ccc pattern like an email address?
 
+var emailAddress = {
+    isValidEmail: function (email) {
+        if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {
+            var validEmail = true;
+            console.log(email + " appears to be a valid email address.");
+            return validEmail;
+        } else {
+            var validEmail = false;
+            console.log(email + " does not appear to be a valid email address.  Please try again.");
+            return validEmail;
+        }
+    }
+};
+
+emailAddress.isValidEmail("satr@mac.com");
+emailAddress.isValidEmail("satr@kiwi.co.nz");
+emailAddress.isValidEmail("donkeykong.com");
+
