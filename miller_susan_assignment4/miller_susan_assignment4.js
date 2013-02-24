@@ -146,3 +146,26 @@ numberAnalysis.fuzzyMatch(75,23,.55);
 
 //  8. Find the number of hours or days difference between two dates.
 
+/* Waiting for further info from Lewis */
+
+//  9. Given a string version of a number such as "42", return the value as an actual Number, such as 42. // isNaN? //
+
+var numberAnalysis2 = {                                     // will be added to numberAnalysis object for final library - separated for ease here.
+    stringToNum: function (string) {
+        var goAhead = isNaN(string);
+        if (goAhead === false) {
+            number = Number(string);
+            console.log("The string " + string + " has been converted to the number " + number + ".");
+            return number;
+        } else {
+            console.log("The string " + string + " is not a valid number.  No conversion was done.");
+            return string;
+        }
+    }
+};
+
+numberAnalysis2.stringToNum("48,930");
+numberAnalysis2.stringToNum("37.4");
+numberAnalysis2.stringToNum("42");
+numberAnalysis2.stringToNum("Bob");
+
