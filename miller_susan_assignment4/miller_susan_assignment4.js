@@ -48,7 +48,7 @@ emailAddress.isValidEmail("donkeykong.com");
 var url = {
     isValidUrl: function (url) {
 
-        if (url.startsWith("http://") || url.startsWith("https://")) {
+        if (url.startsWith("http://") || url.startsWith("https://")) {                          // Tests starting letters of each string
             var validUrl = true;
             console.log(url + " appears to be a valid URL.");
         } else {
@@ -69,20 +69,35 @@ url.isValidUrl("www.domain.com");
 var caseManip = {
     titleCase: function (title) {
         var titled = [];
-        var words = title.split(" ");
-            for (x = 0; x < words.length; x++) {
+        var words = title.split(" ");                                   // Splits string into array
+            for (x = 0; x < words.length; x++) {                        // Cycles through words in array
                 var breakOut = words[x];
-                var firstLetter = breakOut.slice(0,1);
-                var restOfWord = breakOut.slice(1,breakOut.length);
-                var capped = "";
-                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);
-                titled.push(newWord)
+                var firstLetter = breakOut.slice(0,1);                  // Pulls first letter from word
+                var restOfWord = breakOut.slice(1,breakOut.length);     // Places rest of word in own var
+                var capped = "";                                        // Creates an empty string to concat into
+                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);    // Concats the two parts of the word together, with first part capped
+                titled.push(newWord)                                    // Adds now capped word into array
             }
-        var cappedTitle = titled.join(" ");
+        var cappedTitle = titled.join(" ");                             // Joins words in array together with a space between
         console.log(cappedTitle);
+        return cappedTitle;
     }
 };
 
 caseManip.titleCase("it's a dog eat dog world, and I'm wearing milkbone underwear.");
 
+
+//   Given a string that is a list of things separated by a given string, as well as another string separator,
+//   return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".
+
+var stringSeparator = {
+    switch: function (string, originalSeparator, newSeparator) {
+        var words = string.split(originalSeparator);
+        var newString = words.join(newSeparator);
+        console.log("\"" + string + "\" is now \"" + newString + ".\"");
+        return newString;
+    }
+}
+
+stringSeparator.switch("dogs, cats, fish, bones", ",", " -");
 
