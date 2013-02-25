@@ -255,10 +255,17 @@ console.log("12. Given an array of objects and the name of a key, return the arr
 console.log("    in each of the objects: \"a\" + [{a:2},{a:3},{a:1}] → [{a:1},{a:2},{a:3}].");
 
 var arraySort = {
-    keySort: function (array) {
-        array.sort
+    keySort: function (array, key) {
+        array.sort(function(a, b){
+            item1 = a[key];
+            item2 = b[key];
+            if (item1 > item2) {return 1};
+            if (item2 > item1) {return -1};
+            return;
+        })
         console.log(array);
     }
 }
 
-arraySort.keySort([{b:3}, {b:32}, {b:93}, {b:5}, {b:6}]);
+arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b");
+arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num");
