@@ -80,7 +80,7 @@ var caseManip = {
                 var restOfWord = breakOut.slice(1,breakOut.length);                      // Places rest of word in own var
                 var capped = "";                                                         // Creates an empty string to concat into
                 var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);     // Concats the two parts of the word together, with first part capped
-                titled.push(newWord)                                                     // Adds now capped word into array
+                titled.push(newWord);                                                    // Adds now capped word into array
             }
         var cappedTitle = titled.join(" ");                                              // Joins words in array together with a space between
         console.log(cappedTitle);                                                                                       // can be removed after grading
@@ -146,7 +146,30 @@ numberAnalysis.fuzzyMatch(75,23,.55);
 
 //  8. Find the number of hours or days difference between two dates.
 
-/* Waiting for further info from Lewis */
+var dateAnalysis = {
+    dateDiff: function (var1, var2, hoursOrDays) {
+            var dateA = new Date(var1);
+            var dateB = new Date(var2);
+                if (dateA < dateB) {
+                    var elapsed = dateB - dateA;
+                } else {
+                    var elapsed = dateA - dateB;
+                }
+                if (hoursOrDays === "hours") {
+                    var difference = Math.floor(elapsed / 1000 / 60 / 60);
+                } else if (hoursOrDays === "days") {
+                    var difference = Math.floor(elapsed / 1000 / 60 / 60 / 24);
+                }
+            console.log("The difference between " + var1 + " and " + var2 + " is " + difference + " " + hoursOrDays);
+            return difference;
+            }
+};
+
+dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "days");
+dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "hours");
+dateAnalysis.dateDiff("12:43", "7:56", "hours");
+dateAnalysis.dateDiff("1/1/2005 11:21 AM", "2/20/2004 4:53PM", "hours");
+dateAnalysis.dateDiff("1/1/2005 11:21 AM", "2/20/2004 4:53PM", "days");
 
 //  9. Given a string version of a number such as "42", return the value as an actual Number, such as 42. // isNaN? //
 
@@ -202,7 +225,18 @@ var arrayAnalysis2 = {                              // Can be combined into abov
         }
         console.log("The total of the numbers in your array is: " + total);
     }
-}
+};
 
 arrayAnalysis2.arrayTotal([15, 37, "dog", false, "cat", 9, true]);
 
+//  12. Given an array of objects and the name of a key, return the array sorted by the value of that key
+//      in each of the objects: "a" + [{a:2},{a:3},{a:1}] → [{a:1},{a:2},{a:3}].
+
+var arraySort = {
+    keySort: function (array) {
+        array.sort
+        console.log(array);
+    }
+}
+
+arraySort.keySort([{b:3}, {b:32}, {b:93}, {b:5}, {b:6}]);
