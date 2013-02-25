@@ -3,7 +3,7 @@
 // Author: Susan R. Miller
 // Course: SDI 1302
 // Assignment #4: Code Library
-// Notes: Console.logs can all be removed after grading.  They are present within just to show full functionality of the functions.
+// Notes: Console.logs will all be removed after grading.  They are present just to help with readout of the overall assignment.
 //        Functions with similar purpose (ie. number analysis) can be combined into objects for simplicity of call after grading.
 //        Make-up element marked by comments within functions and noted in console.logs and comments of function problem numbers.
 
@@ -19,18 +19,16 @@ var phoneNumber = {
     isValidNumber: function (phoneNumber) {
         if ((phoneNumber.charAt(3) === "-") && (phoneNumber.charAt(7) === "-")) {
             var validNumber = true;
-            console.log("Thank you for entering a valid phone number, " + phoneNumber + ".");
             return validNumber;
         } else {
             var validNumber = false;
-            console.log(phoneNumber + " is not a valid phone number. Please enter your number using xxx-xxx-xxxx format.");
             return validNumber;
         }
     }
 };
 
-phoneNumber.isValidNumber("212-555-1212");
-phoneNumber.isValidNumber("212.555.1212");
+console.log(phoneNumber.isValidNumber("212-555-1212"));
+console.log(phoneNumber.isValidNumber("212.555.1212"));
 
 
 
@@ -45,19 +43,17 @@ var emailAddress = {
     isValidEmail: function (email) {
         if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {   // MAKE UP: Use of multiple booleans, Deliverable 2
             var validEmail = true;
-            console.log(email + " appears to be a valid email address.");
             return validEmail;
         } else {
             var validEmail = false;
-            console.log(email + " does not appear to be a valid email address.  Please try again.");
             return validEmail;
         }
     }
 };
 
-emailAddress.isValidEmail("satr@mac.com");
-emailAddress.isValidEmail("satr@kiwi.co.nz");
-emailAddress.isValidEmail("donkeykong.com");
+console.log(emailAddress.isValidEmail("satr@mac.com"));
+console.log(emailAddress.isValidEmail("satr@kiwi.co.nz"));
+console.log(emailAddress.isValidEmail("donkeykong.com"));
 
 
 
@@ -72,18 +68,17 @@ var url = {
 
         if (url.startsWith("http://") || url.startsWith("https://")) {
             var validUrl = true;
-            console.log(url + " appears to be a valid URL.");
+//            console.log(url + " appears to be a valid URL.");
         } else {
             var validUrl = false;
-            console.log(url + " does not appear to be a valid URL.  Please use http:// or https:// format.");
         }
         return validUrl;
     }
 };
 
-url.isValidUrl("http://www.domain.com");
-url.isValidUrl("https://www.domain.com");
-url.isValidUrl("www.domain.com");
+console.log(url.isValidUrl("http://www.domain.com"));
+console.log(url.isValidUrl("https://www.domain.com"));
+console.log(url.isValidUrl("www.domain.com"));
 
 
 
@@ -107,12 +102,11 @@ var caseManip = {
                 titled.push(newWord);                                                    // Adds now capped word into array
             }
         var cappedTitle = titled.join(" ");                                              // Joins words in array together with a space between
-        console.log(cappedTitle);
         return cappedTitle;
     }
 };
 
-caseManip.titleCase("it's a dog eat dog world, and I'm wearing milkbone underwear.");
+console.log(caseManip.titleCase("it's a dog eat dog world, and I'm wearing milkbone underwear."));
 
 
 
@@ -128,12 +122,11 @@ var stringSeparator = {
     switch: function (string, originalSeparator, newSeparator) {
         var words = string.split(originalSeparator);
         var newString = words.join(newSeparator);
-        console.log("\"" + string + "\" is now \"" + newString + ".\"");
         return newString;
     }
 };
 
-stringSeparator.switch("dogs, cats, fish, bones", ",", " -");
+console.log(stringSeparator.switch("dogs, cats, fish, bones", ",", " -"));
 
 
 
@@ -149,14 +142,13 @@ console.log("6. Format a number to use a specific number of decimal places, as f
 var decimalPlace = {
     setToTwo: function (number) {
         var moneyNum = number.toFixed(2);                                                                               // MAKE-UP: Number Variable, Deliverable 2
-        console.log(number + " is now " + moneyNum);
         return moneyNum;                                                                                                // MAKE-UP: Return Number Output, Deliverable 2
     }
 };
 
-decimalPlace.setToTwo(36);
-decimalPlace.setToTwo(3.14159);
-decimalPlace.setToTwo(796.309);
+console.log(decimalPlace.setToTwo(36));
+console.log(decimalPlace.setToTwo(3.14159));
+console.log(decimalPlace.setToTwo(796.309));
 
 
 
@@ -172,17 +164,15 @@ var numberAnalysis = {
         var diff = Math.abs(a - b);
         if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
             var withinPercent = true;
-            console.log(a + " and " + b + " are within " + decimalPercent + "% of each other.");
         } else {
             var withinPercent = false;
-            console.log(a + " and " + b + " are not within " + decimalPercent + "% of each other.");
         }
         return withinPercent;
     }
 }
 
-numberAnalysis.fuzzyMatch(36,42,.15);
-numberAnalysis.fuzzyMatch(75,23,.55);
+console.log(numberAnalysis.fuzzyMatch(36,42,.15));
+console.log(numberAnalysis.fuzzyMatch(75,23,.55));
 
 
 
@@ -202,17 +192,19 @@ var dateAnalysis = {
                 } else if (hoursOrDays === "days") {
                     var difference = Math.abs(elapsed / 1000 / 60 / 60 / 24);
                 }
-            console.log("The difference between " + var1 + " and " + var2 + " is " + difference.toFixed(2) + " " + hoursOrDays);
+                if (difference != Math.floor(difference)) {                                                             // Limits partial days/hours to 2 decimal places
+                    difference = difference.toFixed(2);
+                }
         return difference;
     }
 
 };
 
-dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "days");
-dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "hours");
-dateAnalysis.dateDiff("May 17, 2005", "July 13, 2005", "days");
-dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days");
-dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours");
+console.log(dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "days"));
+console.log(dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "hours"));
+console.log(dateAnalysis.dateDiff("May 17, 2005", "July 13, 2005", "days"));
+console.log(dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days"));
+console.log(dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours"));
 
 
 
@@ -227,19 +219,17 @@ var numberAnalysis2 = {
         var goAhead = isNaN(string);
         if (goAhead === false) {
             number = Number(string);
-            console.log("The string " + string + " has been converted to the number " + number + ".");
             return number;
         } else {
-            console.log("The string " + string + " is not a valid number.  No conversion was done.");
-            return string;
+            return "Not a valid number.";
         }
     }
 };
 
-numberAnalysis2.stringToNum("48,930");
-numberAnalysis2.stringToNum("37.4");
-numberAnalysis2.stringToNum("42");
-numberAnalysis2.stringToNum("Bob");
+console.log(numberAnalysis2.stringToNum("48,930"));
+console.log(numberAnalysis2.stringToNum("37.4"));
+console.log(numberAnalysis2.stringToNum("42"));
+console.log(numberAnalysis2.stringToNum("Bob"));
 
 
 
@@ -255,13 +245,12 @@ var arrayAnalysis = {
     arrayValue: function (array, value) {
         array.push(value);                                              // Adds the given value to the array
         array.sort(function (a,b) {return a - b;});                     // Sorts the array numerically
-        itemsLess = array.slice(0,array.indexOf(value));                // Finds the new index of the initial value to be measured by
-        console.log(itemsLess + " are less than " + value);
-        return itemsLess;
+        var nextLargest = array[(array.indexOf(value) + 1)];            // Calls the number following the value entered
+        return nextLargest;
     }
 }
 
-arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 7);
+console.log(arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 9));
 
 
 
@@ -284,11 +273,11 @@ var arrayAnalysis2 = {
                 }
             }
         }
-        console.log("The total of the numbers in your array is: " + total);
+        return total;
     }
 };
 
-arrayAnalysis2.arrayTotal([15, 37, "dog", false, "cat", 9, true]);
+console.log(arrayAnalysis2.arrayTotal([15, 37, "dog", false, "cat", 9, true]));
 
 
 
@@ -308,11 +297,10 @@ var arraySort = {
             item2 = b[key];
             if (item1 > item2) {return 1};
             if (item2 > item1) {return -1};
-            return;
         })
-        console.log(array);
+        return array;
     }
 }
 
-arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b");
-arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num");
+console.log(arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b"));
+console.log(arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num"));
