@@ -148,6 +148,7 @@ numberAnalysis.fuzzyMatch(75,23,.55);
 
 var dateAnalysis = {
     dateDiff: function (var1, var2, hoursOrDays) {
+        if((var1.indexOf("/") >= 0) && (var2.indexOf("/") >= 0)) {
             var dateA = new Date(var1);
             var dateB = new Date(var2);
                 if (dateA < dateB) {
@@ -161,15 +162,28 @@ var dateAnalysis = {
                     var difference = Math.floor(elapsed / 1000 / 60 / 60 / 24);
                 }
             console.log("The difference between " + var1 + " and " + var2 + " is " + difference + " " + hoursOrDays);
-            return difference;
+        } else if ((var1.indexOf(":") >= 0) && (var2.indexOf(":") >= 0)) {
+            splitTimeA = var1.split(":");
+            splitTimeB = var2.split(":");
+            diffHours = Math.abs(splitTimeA[0] - splitTimeB[0]);
+            diffMins = Math.abs(splitTimeA[1] - splitTimeB[1]);
+            if (diffMins === NaN) {
+                console.log("Please enter a valid time in military (24 hour) format with no AM or PM.");
+                return;
+            } else {
+                diff = "";
+                difference = diff.concat(diffHours + ":" + diffMins);
+                console.log("The elapsed time between " + var1 + " and " + var2 + " is " + difference + ".")
             }
+        }
+        return difference;
+    }
 };
 
 dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "days");
 dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "hours");
 dateAnalysis.dateDiff("12:43", "7:56", "hours");
-dateAnalysis.dateDiff("1/1/2005 11:21 AM", "2/20/2004 4:53PM", "hours");
-dateAnalysis.dateDiff("1/1/2005 11:21 AM", "2/20/2004 4:53PM", "days");
+dateAnalysis.dateDiff("18:21", "4:53 PM", "hours");
 
 //  9. Given a string version of a number such as "42", return the value as an actual Number, such as 42. // isNaN? //
 
