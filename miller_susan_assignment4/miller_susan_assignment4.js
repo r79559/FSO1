@@ -11,7 +11,7 @@
 
 //  1. Does a string follow a 123-456-7890 pattern like a phone number?
 
-console.log("Does a string follow a 123-456-7890 pattern like a phone number?");
+console.log("1. Does a string follow a 123-456-7890 pattern like a phone number?");
 
 
 var phoneNumber = {
@@ -34,14 +34,15 @@ phoneNumber.isValidNumber("212.555.1212");
 
 
 //  2. Does a string follow an aaa@bbb.ccc pattern like an email address?
+// MAKE UP ELEMENT
 
 console.log("******************************************************************************************************");
-console.log("2. Does a string follow an aaa@bbb.ccc pattern like an email address?");
+console.log("2. Does a string follow an aaa@bbb.ccc pattern like an email address? ** 1 MAKE UP ELEMENT");
 
 
 var emailAddress = {
     isValidEmail: function (email) {
-        if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {
+        if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {   // MAKE UP: Use of multiple booleans, Deliverable 2
             var validEmail = true;
             console.log(email + " appears to be a valid email address.");
             return validEmail;
@@ -86,16 +87,17 @@ url.isValidUrl("www.domain.com");
 
 
 //  4. Title-case a string (split into words, then uppercase the first letter of each word)
+//  Make-up Element
 
 console.log("******************************************************************************************************");
-console.log("4. Title-case a string (split into words, then uppercase the first letter of each word)");
+console.log("4. Title-case a string (split into words, then uppercase the first letter of each word) ** 1 MAKE UP ELEMENT");
 
 
 var caseManip = {
     titleCase: function (title) {
         var titled = [];
         var words = title.split(" ");                                                    // Splits string into array
-            for (x = 0; x < words.length; x++) {                                         // Cycles through words in array
+            for (x = 0; x < words.length; x++) {                                         // Cycles through words in array       // MAKE UP: for loop, Deliverable 2
                 var breakOut = words[x];
                 var firstLetter = breakOut.slice(0,1);                                   // Pulls first letter from word
                 var restOfWord = breakOut.slice(1,breakOut.length);                      // Places rest of word in own var
@@ -137,16 +139,17 @@ stringSeparator.switch("dogs, cats, fish, bones", ",", " -");
 // **** NUMBER FUNCTIONS **** //
 
 //  6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
+// MAKE UP ELEMENTS
 
 console.log("******************************************************************************************************");
-console.log("6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10");
+console.log("6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10 ** 2 MAKE UP ELEMENTS");
 
 
 var decimalPlace = {
     setToTwo: function (number) {
-        var moneyNum = number.toFixed(2);
+        var moneyNum = number.toFixed(2);                                                                               // MAKE-UP: Number Variable, Deliverable 2
         console.log(number + " is now " + moneyNum);
-        return moneyNum;
+        return moneyNum;                                                                                                // MAKE-UP: Return Number Output, Deliverable 2
     }
 };
 
@@ -157,13 +160,14 @@ decimalPlace.setToTwo(796.309);
 
 
 //  7. Fuzzy-match a number: is the number above or below a number within a certain percent?
+//  MAKE UP ELEMENTS
 
 console.log("******************************************************************************************************");
-console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent?");
+console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent? ** 1 MAKE UP ELEMENT");
 
 
 var numberAnalysis = {
-    fuzzyMatch: function (a, b, decimalPercent) {
+    fuzzyMatch: function (a, b, decimalPercent) {                                                                       // MAKE-UP: Number Data Type, Deliverable 2
         var diff = Math.abs(a - b);
         if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
             var withinPercent = true;
@@ -261,13 +265,14 @@ arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 7);
 
 
 //  11. Find the total value of just the numbers in an array, even if some of the items are not numbers.
+//  MAKE UP ELEMENT
 
 console.log("******************************************************************************************************");
-console.log("11. Find the total value of just the numbers in an array, even if some of the items are not numbers.");
+console.log("11. Find the total value of just the numbers in an array, even if some of the items are not numbers. ** 1 MAKE UP ELEMENT");
 
 
 var arrayAnalysis2 = {
-    arrayTotal: function (array) {
+    arrayTotal: function (array) {                                                                                      // MAKE UP: Array method, Deliverable 2
         var total = 0;
         for (x = 0; x < array.length; x++) {
             var value = array[x];
