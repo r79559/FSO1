@@ -3,8 +3,9 @@
 // Author: Susan R. Miller
 // Course: SDI 1302
 // Assignment #4: Code Library
-// Notes: console.logs can all be removed after grading.  They are present within just to show full functionality of the functions.
-//        functions with similar purpose (ie. number analysis) can be combined into objects for simplicity of call after grading.
+// Notes: Console.logs can all be removed after grading.  They are present within just to show full functionality of the functions.
+//        Functions with similar purpose (ie. number analysis) can be combined into objects for simplicity of call after grading.
+//        Make-up element marked by comments within functions and noted in console.logs and comments of function problem numbers.
 
 // **** STRING FUNCTIONS **** //
 
@@ -276,7 +277,7 @@ var arrayAnalysis2 = {
         var total = 0;
         for (x = 0; x < array.length; x++) {
             var value = array[x];
-            if ((value !== false) && (value !== true)) {
+            if ((value !== false) && (value !== true)) {                                                                // Keeps Booleans from reappearing in array.
                 var isIt = isNaN(value);
                 if (isIt === false) {
                     total += value;
