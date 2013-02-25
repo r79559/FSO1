@@ -144,10 +144,10 @@ var numberAnalysis = {
         var diff = Math.abs(a - b);
         if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
             var withinPercent = true;
-            console.log(a + " and " + b + " are within " + decimalPercent + "% of each other.");
+            console.log(a + " and " + b + " are within " + decimalPercent + "% of each other.");                        // can be removed after grading
         } else {
             var withinPercent = false;
-            console.log(a + " and " + b + " are not within " + decimalPercent + "% of each other.");
+            console.log(a + " and " + b + " are not within " + decimalPercent + "% of each other.");                    // can be removed after grading
         }
         return withinPercent;
     }
@@ -171,7 +171,7 @@ var dateAnalysis = {
                 } else if (hoursOrDays === "days") {
                     var difference = Math.abs(elapsed / 1000 / 60 / 60 / 24);
                 }
-            console.log("The difference between " + var1 + " and " + var2 + " is " + difference.toFixed(2) + " " + hoursOrDays);
+            console.log("The difference between " + var1 + " and " + var2 + " is " + difference.toFixed(2) + " " + hoursOrDays);        // can be removed after grading
         return difference;
     }
 
@@ -182,8 +182,7 @@ dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "hours");
 dateAnalysis.dateDiff("May 17, 2005", "July 13, 2005", "days");
 dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days");
 dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours");
-dateAnalysis.dateDiff("12:43", "7:56", "days");
-dateAnalysis.dateDiff("18:21", "4:53 PM", "hours");
+
 
 //  9. Given a string version of a number such as "42", return the value as an actual Number, such as 42.
 console.log("******************************************************************************************************");
@@ -194,10 +193,10 @@ var numberAnalysis2 = {                                     // will be added to 
         var goAhead = isNaN(string);
         if (goAhead === false) {
             number = Number(string);
-            console.log("The string " + string + " has been converted to the number " + number + ".");
+            console.log("The string " + string + " has been converted to the number " + number + ".");                  // can be removed after grading
             return number;
         } else {
-            console.log("The string " + string + " is not a valid number.  No conversion was done.");
+            console.log("The string " + string + " is not a valid number.  No conversion was done.");                   // can be removed after grading
             return string;
         }
     }
@@ -220,7 +219,7 @@ var arrayAnalysis = {
         array.push(value);                           // Adds the given value to the array
         array.sort(function (a,b) {return a - b;});  // Sorts the array numerically
         itemsLess = array.slice(0,array.indexOf(value));              // Finds the new index of the initial value to be measured by
-        console.log(itemsLess + " are less than " + value);
+        console.log(itemsLess + " are less than " + value);                                                             // can be removed after grading
         return itemsLess;
     }
 }
@@ -243,7 +242,7 @@ var arrayAnalysis2 = {                              // Can be combined into abov
                 }
             }
         }
-        console.log("The total of the numbers in your array is: " + total);
+        console.log("The total of the numbers in your array is: " + total);                                             // can be removed after grading
     }
 };
 
