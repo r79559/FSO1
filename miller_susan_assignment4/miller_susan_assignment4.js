@@ -27,7 +27,8 @@ var phoneNumber = {
         } else {
             validNumber = false;
         }
-        return validNumber;
+        var getValidNumber = function () { return validNumber };
+        return getValidNumber();
     }
 };
 
@@ -54,7 +55,8 @@ var emailAddress = {
         } else {
             validEmail = false;
         }
-        return validEmail;
+        var getValidEmail = function() { return validEmail; };
+        return getValidEmail();
     }
 };
 
@@ -79,7 +81,8 @@ var url = {
         } else {
             validUrl = false;
         }
-        return validUrl;
+        var getValidUrl = function () { return validUrl };
+        return getValidUrl();
     }
 };
 
@@ -108,7 +111,8 @@ var caseManip = {
                 var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());     // Concats the two parts of the word together, with first part capped
                 titled.push(newWord);                                                    // Adds now capped word into array
             }
-        return titled.join(" ");
+        var getTitleCase = function () { return titled.join(" ") };
+        return getTitleCase();
     }
 };
 
@@ -127,7 +131,8 @@ console.log("   return a string with the first separator changed to the second: 
 var stringSeparator = {
     switch: function (string, originalSeparator, newSeparator) {
         var words = string.split(originalSeparator);
-        return words.join(newSeparator);
+        var getNewString = function () { return words.join(newSeparator)};
+        return getNewString();
     }
 };
 
@@ -146,7 +151,8 @@ console.log("6. Format a number to use a specific number of decimal places, as f
 
 var decimalPlace = {
     setToTwo: function (number, places) {
-        return number.toFixed(places);                                                                                  // MAKE-UP: Return Number Output, Deliverable 2
+        var getNumber = function () { return number.toFixed(places) };
+        return getNumber();                                                                                  // MAKE-UP: Return Number Output, Deliverable 2
     }
 };
 
@@ -172,7 +178,8 @@ var numberAnalysis = {
         } else {
             withinPercent = false;
         }
-        return withinPercent;
+        var isItWithin = function () {return withinPercent};
+        return isItWithin();
     }
 }
 
@@ -201,7 +208,8 @@ var dateAnalysis = {
                 if (difference != Math.floor(difference)) {                                                             // Limits partial days/hours to 2 decimal places
                     difference = difference.toFixed(2);
                 }
-        return difference;
+        var getDifference = function () { return difference };
+        return getDifference();
     }
 
 };
@@ -226,10 +234,11 @@ var numberAnalysis2 = {
         var number;
         if (goAhead === false) {
             number = Number(string);
-            return number;
         } else {
-            return "Not a valid number.";
+            number = "Not a valid number.";
         }
+        var getNumber = function () { return number };
+        return getNumber();
     }
 };
 
@@ -252,7 +261,8 @@ var arrayAnalysis = {
     arrayValue: function (array, value) {
         array.push(value);                                              // Adds the given value to the array
         array.sort(function (a,b) {return a - b;});                     // Sorts the array numerically
-        return array[(array.indexOf(value) + 1)];                       // Returns next highest number
+        var valueOfArray = function () { return array[(array.indexOf(value) + 1)] };                       // Returns next highest number
+        return valueOfArray();
     }
 };
 
@@ -282,7 +292,8 @@ var arrayAnalysis2 = {
                 }
             }
         }
-        return total;
+        var getTotal = function() { return total };
+        return getTotal();
     }
 };
 
@@ -307,7 +318,8 @@ var arraySort = {
             if (item1 > item2) {return 1};
             if (item2 > item1) {return -1};
         });
-        return array;
+        getArray = function () { return array };
+        return getArray();
     }
 };
 
