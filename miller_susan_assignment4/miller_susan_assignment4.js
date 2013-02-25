@@ -150,13 +150,13 @@ var dateAnalysis = {
     dateDiff: function (var1, var2, hoursOrDays) {
             var dateA = new Date(var1);
             var dateB = new Date(var2);
-            var elapsed = dateA - dateB;
+            var elapsed = dateB - dateA;
                 if (hoursOrDays === "hours") {
                     var difference = Math.abs(elapsed / 1000 / 60 / 60);
                 } else if (hoursOrDays === "days") {
                     var difference = Math.abs(elapsed / 1000 / 60 / 60 / 24);
                 }
-            console.log("The difference between " + var1 + " and " + var2 + " is " + difference + " " + hoursOrDays);
+            console.log("The difference between " + var1 + " and " + var2 + " is " + difference.toFixed(2) + " " + hoursOrDays);
         return difference;
     }
 
@@ -164,7 +164,10 @@ var dateAnalysis = {
 
 dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "days");
 dateAnalysis.dateDiff("10/31/2001", "2/29/2004", "hours");
-dateAnalysis.dateDiff("12:43", "7:56", "hours");
+dateAnalysis.dateDiff("May 17, 2005", "July 13, 2005", "days");
+dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days");
+dateAnalysis.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours");
+dateAnalysis.dateDiff("12:43", "7:56", "days");
 dateAnalysis.dateDiff("18:21", "4:53 PM", "hours");
 
 //  9. Given a string version of a number such as "42", return the value as an actual Number, such as 42. // isNaN? //
