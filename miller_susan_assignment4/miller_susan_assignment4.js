@@ -17,19 +17,24 @@ console.log("1. Does a string follow a 123-456-7890 pattern like a phone number?
 
 var phoneNumber = {
     isValidNumber: function (phoneNumber) {
+        var validNumber;
         if ((phoneNumber.charAt(3) === "-") && (phoneNumber.charAt(7) === "-")) {
-            var validNumber = true;
-            return validNumber;
+            if ((isNaN(phoneNumber.slice(0,3))===false && isNaN(phoneNumber.slice(4,7))===false && isNaN(phoneNumber.slice(8,11))===false) && (phoneNumber.length === 12)) {
+                validNumber = true;
+            } else {
+                validNumber = false;
+            }
         } else {
-            var validNumber = false;
-            return validNumber;
+            validNumber = false;
         }
+        return validNumber;
     }
 };
 
 console.log(phoneNumber.isValidNumber("212-555-1212"));
+console.log(phoneNumber.isValidNumber("212-55S-121Z"));
 console.log(phoneNumber.isValidNumber("212.555.1212"));
-
+console.log(phoneNumber.isValidNumber("212-555-12121"));
 
 
 //  2. Does a string follow an aaa@bbb.ccc pattern like an email address?
@@ -41,17 +46,20 @@ console.log("2. Does a string follow an aaa@bbb.ccc pattern like an email addres
 
 var emailAddress = {
     isValidEmail: function (email) {
-        if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {   // MAKE UP: Use of multiple booleans, Deliverable 2
-            var validEmail = true;
-            return validEmail;
+        var validEmail;
+        if (email.indexOf(" ") >= 0) {
+            validEmail = false;
+        } else if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {   // MAKE UP: Use of multiple booleans, Deliverable 2
+            validEmail = true;
         } else {
-            var validEmail = false;
-            return validEmail;
+            validEmail = false;
         }
+        return validEmail;
     }
 };
 
 console.log(emailAddress.isValidEmail("satr@mac.com"));
+console.log(emailAddress.isValidEmail("satr@ mac.com"));
 console.log(emailAddress.isValidEmail("satr@kiwi.co.nz"));
 console.log(emailAddress.isValidEmail("donkeykong.com"));
 
@@ -65,12 +73,11 @@ console.log("3. Is the string a URL? (Does it start with http: or https:?)");
 
 var url = {
     isValidUrl: function (url) {
-
+        var validUrl;
         if (url.startsWith("http://") || url.startsWith("https://")) {
-            var validUrl = true;
-//            console.log(url + " appears to be a valid URL.");
+            validUrl = true;
         } else {
-            var validUrl = false;
+            validUrl = false;
         }
         return validUrl;
     }
@@ -98,15 +105,14 @@ var caseManip = {
                 var firstLetter = breakOut.slice(0,1);                                   // Pulls first letter from word
                 var restOfWord = breakOut.slice(1,breakOut.length);                      // Places rest of word in own var
                 var capped = "";                                                         // Creates an empty string to concat into
-                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord);     // Concats the two parts of the word together, with first part capped
+                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());     // Concats the two parts of the word together, with first part capped
                 titled.push(newWord);                                                    // Adds now capped word into array
             }
-        var cappedTitle = titled.join(" ");                                              // Joins words in array together with a space between
-        return cappedTitle;
+        return titled.join(" ");
     }
 };
 
-console.log(caseManip.titleCase("it's a dog eat dog world, and I'm wearing milkbone underwear."));
+console.log(caseManip.titleCase("it's a dog eat dog world, and I'm wEARing milkbone underwear."));
 
 
 
@@ -121,8 +127,7 @@ console.log("   return a string with the first separator changed to the second: 
 var stringSeparator = {
     switch: function (string, originalSeparator, newSeparator) {
         var words = string.split(originalSeparator);
-        var newString = words.join(newSeparator);
-        return newString;
+        return words.join(newSeparator);
     }
 };
 
@@ -133,22 +138,21 @@ console.log(stringSeparator.switch("dogs, cats, fish, bones", ",", " -"));
 // **** NUMBER FUNCTIONS **** //
 
 //  6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
-// MAKE UP ELEMENTS
+// MAKE UP ELEMENT
 
 console.log("******************************************************************************************************");
-console.log("6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10 ** 2 MAKE UP ELEMENTS");
+console.log("6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10 ** 1 MAKE UP ELEMENTS");
 
 
 var decimalPlace = {
-    setToTwo: function (number) {
-        var moneyNum = number.toFixed(2);                                                                               // MAKE-UP: Number Variable, Deliverable 2
-        return moneyNum;                                                                                                // MAKE-UP: Return Number Output, Deliverable 2
+    setToTwo: function (number, places) {
+        return number.toFixed(places);                                                                                  // MAKE-UP: Return Number Output, Deliverable 2
     }
 };
 
-console.log(decimalPlace.setToTwo(36));
-console.log(decimalPlace.setToTwo(3.14159));
-console.log(decimalPlace.setToTwo(796.309));
+console.log(decimalPlace.setToTwo(36, 4));
+console.log(decimalPlace.setToTwo(3.14159, 2));
+console.log(decimalPlace.setToTwo(796.309, 1));
 
 
 
@@ -156,16 +160,17 @@ console.log(decimalPlace.setToTwo(796.309));
 //  MAKE UP ELEMENTS
 
 console.log("******************************************************************************************************");
-console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent? ** 1 MAKE UP ELEMENT");
+console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent? ** 2 MAKE UP ELEMENT");
 
 
 var numberAnalysis = {
     fuzzyMatch: function (a, b, decimalPercent) {                                                                       // MAKE-UP: Number Data Type, Deliverable 2
-        var diff = Math.abs(a - b);
+        var diff = Math.abs(a - b);                                                                                     // MAKE-UP: Number variable, Deliverable 2
+        var withinPercent;
         if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
-            var withinPercent = true;
+            withinPercent = true;
         } else {
-            var withinPercent = false;
+            withinPercent = false;
         }
         return withinPercent;
     }
@@ -186,11 +191,12 @@ var dateAnalysis = {
     dateDiff: function (var1, var2, hoursOrDays) {
             var dateA = new Date(var1);
             var dateB = new Date(var2);
+            var difference;
             var elapsed = dateB - dateA;
                 if (hoursOrDays === "hours") {
-                    var difference = Math.abs(elapsed / 1000 / 60 / 60);
+                    difference = Math.abs(elapsed / 1000 / 60 / 60);
                 } else if (hoursOrDays === "days") {
-                    var difference = Math.abs(elapsed / 1000 / 60 / 60 / 24);
+                    difference = Math.abs(elapsed / 1000 / 60 / 60 / 24);
                 }
                 if (difference != Math.floor(difference)) {                                                             // Limits partial days/hours to 2 decimal places
                     difference = difference.toFixed(2);
@@ -217,6 +223,7 @@ console.log("9. Given a string version of a number such as \"42\", return the va
 var numberAnalysis2 = {
     stringToNum: function (string) {
         var goAhead = isNaN(string);
+        var number;
         if (goAhead === false) {
             number = Number(string);
             return number;
@@ -245,10 +252,9 @@ var arrayAnalysis = {
     arrayValue: function (array, value) {
         array.push(value);                                              // Adds the given value to the array
         array.sort(function (a,b) {return a - b;});                     // Sorts the array numerically
-        var nextLargest = array[(array.indexOf(value) + 1)];            // Calls the number following the value entered
-        return nextLargest;
+        return array[(array.indexOf(value) + 1)];                       // Returns next highest number
     }
-}
+};
 
 console.log(arrayAnalysis.arrayValue([5, 17, 11, 4, 7, 13], 9));
 
@@ -264,11 +270,14 @@ console.log("11. Find the total value of just the numbers in an array, even if s
 var arrayAnalysis2 = {
     arrayTotal: function (array) {                                                                                      // MAKE UP: Array method, Deliverable 2
         var total = 0;
+        var value;
+        var isIt;
         for (x = 0; x < array.length; x++) {
-            var value = array[x];
+            value = array[x];
             if ((value !== false) && (value !== true)) {                                                                // Keeps Booleans from reappearing in array.
-                var isIt = isNaN(value);
+                isIt = isNaN(value);
                 if (isIt === false) {
+                    value = Number(value);
                     total += value;
                 }
             }
@@ -277,7 +286,7 @@ var arrayAnalysis2 = {
     }
 };
 
-console.log(arrayAnalysis2.arrayTotal([15, 37, "dog", false, "cat", 9, true]));
+console.log(arrayAnalysis2.arrayTotal([15, "37", "dog", false, "cat", 9, true, "9"]));
 
 
 
@@ -297,10 +306,10 @@ var arraySort = {
             item2 = b[key];
             if (item1 > item2) {return 1};
             if (item2 > item1) {return -1};
-        })
+        });
         return array;
     }
-}
+};
 
 console.log(arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b"));
 console.log(arraySort.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num"));
