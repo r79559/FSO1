@@ -9,61 +9,70 @@
 
 // **** STRING FUNCTIONS **** //
 
+var myLibrary = function () {
 
-//  1. Does a string follow a 123-456-7890 pattern like a phone number?
+// Check for ###-###-#### phone number pattern.
 
-console.log("1. Does a string follow a 123-456-7890 pattern like a phone number?");
-
-
-var phoneNumber = {
-    isValidNumber: function (phoneNumber) {
+    var validPhone = function(phoneNumber) {
         var validNumber;
-        if ((phoneNumber.charAt(3) === "-") && (phoneNumber.charAt(7) === "-")) {
-            if ((isNaN(phoneNumber.slice(0,3))===false && isNaN(phoneNumber.slice(4,7))===false && isNaN(phoneNumber.slice(8,11))===false) && (phoneNumber.length === 12)) {
-                validNumber = true;
+            if ((phoneNumber.charAt(3) === "-") && (phoneNumber.charAt(7) === "-")) {
+                if ((isNaN(phoneNumber.slice(0,3))===false && isNaN(phoneNumber.slice(4,7))===false && isNaN(phoneNumber.slice(8,11))===false) && (phoneNumber.length === 12)) {
+                    validNumber = true;
+                } else {
+                    validNumber = false;
+                }
             } else {
                 validNumber = false;
             }
-        } else {
-            validNumber = false;
-        }
         var getValidNumber = function () { return validNumber };
         return getValidNumber();
+    };
+
+// Check for valid email address *** MAKE UP ELEMENT
+
+    var validEmail = function (email) {
+        var isValid;
+            if (email.indexOf(" ") >= 0) {
+                isValid = false;
+            } else if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {   // MAKE UP: Use of multiple booleans, Deliverable 2
+                isValid = true;
+            } else {
+                isValid = false;
+            }
+        var getValidEmail = function() { return isValid; };
+        return getValidEmail();
+    };
+
+
+
+
+
+    return {
+        "validPhone": validPhone,
+        "validEmail": validEmail
     }
+
 };
 
-console.log(phoneNumber.isValidNumber("212-555-1212"));
-console.log(phoneNumber.isValidNumber("212-55S-121Z"));
-console.log(phoneNumber.isValidNumber("212.555.1212"));
-console.log(phoneNumber.isValidNumber("212-555-12121"));
+var lib = new myLibrary();
+
+
+//  1. Does a string follow a 123-456-7890 pattern like a phone number?
+// Calls
+console.log(lib.validPhoneNumber("212-555-1212"));
+console.log(lib.validPhoneNumber("212-55S-121Z"));
+console.log(lib.validPhoneNumber("212.555.1212"));
+console.log(lib.validPhoneNumber("212-555-12121"));
 
 
 //  2. Does a string follow an aaa@bbb.ccc pattern like an email address?
 // MAKE UP ELEMENT
 
-console.log("******************************************************************************************************");
-console.log("2. Does a string follow an aaa@bbb.ccc pattern like an email address? ** 1 MAKE UP ELEMENT");
-
-
-var emailAddress = {
-    isValidEmail: function (email) {
-        var validEmail;
-        if (email.indexOf(" ") >= 0) {
-            validEmail = false;
-        } else if (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0)) {   // MAKE UP: Use of multiple booleans, Deliverable 2
-            validEmail = true;
-        } else {
-            validEmail = false;
-        }
-        var getValidEmail = function() { return validEmail; };
-        return getValidEmail();
-    }
-};
-
 console.log(emailAddress.isValidEmail("satr@mac.com"));
 console.log(emailAddress.isValidEmail("satr@ mac.com"));
 console.log(emailAddress.isValidEmail("satr@kiwi.co.nz"));
 console.log(emailAddress.isValidEmail("donkeykong.com"));
+
 
 
 
