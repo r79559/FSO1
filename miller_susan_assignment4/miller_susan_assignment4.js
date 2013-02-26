@@ -173,38 +173,38 @@ console.log("**** STRING FUNCTIONS ****");
 console.log(" ");
 
 console.log("1. Does a string follow a 123-456-7890 pattern like a phone number?");
-console.log(myLib.checkPhone("212-555-1212"));
-console.log(myLib.checkPhone("212-55S-121Z"));
-console.log(myLib.checkPhone("212.555.1212"));
-console.log(myLib.checkPhone("212-555-12121"));
+console.log("212-555-1212: " + myLib.checkPhone("212-555-1212"));
+console.log("212-55S-121Z: " + myLib.checkPhone("212-55S-121Z"));
+console.log("212.555.1212: " + myLib.checkPhone("212.555.1212"));
+console.log("212-555-12121: " + myLib.checkPhone("212-555-12121"));
 
 console.log(" ");
 console.log("2. Does a string follow an aaa@bbb.ccc pattern like an email address?");
 console.log("                      MAKE UP ELEMENT");
 
-console.log(myLib.checkEmail("satr@mac.com"));
-console.log(myLib.checkEmail("satr@ mac.com"));
-console.log(myLib.checkEmail("satr@kiwi.co.nz"));
-console.log(myLib.checkEmail("donkeykong.com"));
+console.log("satr@mac.com: " + myLib.checkEmail("satr@mac.com"));
+console.log("satr@ mac.com: " + myLib.checkEmail("satr@ mac.com"));
+console.log("satr@kiwi.co.nz: " + myLib.checkEmail("satr@kiwi.co.nz"));
+console.log("donkeykong.com: " + myLib.checkEmail("donkeykong.com"));
 
 console.log(" ");
 console.log("3. Is the string a URL? (Does it start with http: or https:?)");
 
-console.log(myLib.checkUrl("http://www.domain.com"));
-console.log(myLib.checkUrl("https://www.domain.com"));
-console.log(myLib.checkUrl("www.domain.com"));
+console.log("http://www.domain.com: " + myLib.checkUrl("http://www.domain.com"));
+console.log("https://www.domain.com: " + myLib.checkUrl("https://www.domain.com"));
+console.log("www.domain.com: " + myLib.checkUrl("www.domain.com"));
 
 console.log(" ");
 console.log("4. Title-case a string (split into words, then uppercase the first letter of each word)");
 console.log("                      MAKE UP ELEMENT");
 
-console.log(myLib.titleCase("it's a dog eat dog world, and I'm wEARing milkbone underwear."));
+console.log("it's a dog eat dog world, and I'm wEARing milkbone underwear >> " + myLib.titleCase("it's a dog eat dog world, and I'm wEARing milkbone underwear."));
 
 console.log(" ");
 console.log("5. Given a string that is a list of things separated by a given string, as well as another string separator,");
 console.log("   return a string with the first separator changed to the second.");
 
-console.log(myLib.switchSeparator("dogs, cats, fish, bones", ",", " -"));
+console.log("dogs, cats, fish, bones >> " + myLib.switchSeparator("dogs, cats, fish, bones", ",", " -"));
 
 console.log(" ");
 console.log("**** NUMBER FUNCTIONS ****");
@@ -213,33 +213,33 @@ console.log(" ");
 console.log("6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10");
 console.log("                      MAKE UP ELEMENT");
 
-console.log(myLib.decimalPlace(36, 4));
-console.log(myLib.decimalPlace(3.14159, 2));
-console.log(myLib.decimalPlace(796.309, 1));
+console.log("36 to 4 decimal places: " + myLib.decimalPlace(36, 4));
+console.log("3.14159 to 2 decimal places: " + myLib.decimalPlace(3.14159, 2));
+console.log("796.309 to 1 decimal place: " + myLib.decimalPlace(796.309, 1));
 
 console.log(" ");
 console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent?");
 console.log("                      MAKE UP ELEMENTS");
 
-console.log(myLib.fuzzyMatch(36,42,.15));
-console.log(myLib.fuzzyMatch(75,23,.55));
+console.log("36 and 42 within 15%? " + myLib.fuzzyMatch(36,42,.15));
+console.log("75 and 23 within 55%? " + myLib.fuzzyMatch(75,23,.55));
 
 console.log(" ");
 console.log("8. Find the number of hours or days difference between two dates.");
 
-console.log(myLib.dateDiff("10/31/2001", "2/29/2004", "days"));
-console.log(myLib.dateDiff("10/31/2001", "2/29/2004", "hours"));
-console.log(myLib.dateDiff("May 17, 2005", "July 13, 2005", "days"));
-console.log(myLib.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days"));
-console.log(myLib.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours"));
+console.log("How many days apart are 10/31/2001 and 2/29/2004? " + myLib.dateDiff("10/31/2001", "2/29/2004", "days"));
+console.log("How many hours apart are 10/31/2001 and 2/29/2004? " + myLib.dateDiff("10/31/2001", "2/29/2004", "hours"));
+console.log("How many days apart are May 17, 2005 and July 13, 2005? " + myLib.dateDiff("May 17, 2005", "July 13, 2005", "days"));
+console.log("How many days apart are May 17, 1977 at 10:59am and July 13, 2005 at 7:26pm? " + myLib.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days"));
+console.log("How many hours apart are May 17, 1977 at 10:59am and July 13, 2005 at 7:26pm? " + myLib.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours"));
 
 console.log(" ");
 console.log("9. Given a string version of a number such as \"42\", return the value as an actual Number, such as 42.");
 
-console.log(myLib.stringToNum("48,930"));
-console.log(myLib.stringToNum("37.4"));
-console.log(myLib.stringToNum("42"));
-console.log(myLib.stringToNum("Bob"));
+console.log("String = \"48,930\": " + myLib.stringToNum("48,930"));
+console.log("String = \"37.4\": " + myLib.stringToNum("37.4"));
+console.log("String = \"42\": " + myLib.stringToNum("42"));
+console.log("String = \'Bob\": " + myLib.stringToNum("Bob"));
 
 console.log(" ");
 console.log("**** ARRAY FUNCTIONS ****");
@@ -247,17 +247,17 @@ console.log(" ");
 
 console.log("10. Find the smallest value in an array that is greater than a given number");
 
-console.log(myLib.arrayValue([5, 17, 11, 4, 7, 13], 9));
+console.log("The smallest value in the array [5, 17, 11, 4, 7, 13] that is greater than 9 is: " + myLib.arrayValue([5, 17, 11, 4, 7, 13], 9));
 
 console.log(" ");
 console.log("11. Find the total value of just the numbers in an array, even if some of the items are not numbers.");
 console.log("                      MAKE UP ELEMENT");
 
-console.log(myLib.arrayTotal([15, "37", "dog", false, "cat", 9, true, "9"]));
+console.log("The total value of just the number in the array [15, \"37\", \"dog\", false, \"cat\", 9, true, \"9\"] is: " + myLib.arrayTotal([15, "37", "dog", false, "cat", 9, true, "9"]));
 
 console.log(" ");
 console.log("12. Given an array of objects and the name of a key, return the array sorted by the value of that key");
 console.log("    in each of the objects: \"a\" + [{a:2},{a:3},{a:1}] → [{a:1},{a:2},{a:3}].");
 
-console.log(myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b"));
-console.log(myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num"));
+console.log("Sorted by the key \"b\": " + myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b"));
+console.log("Sorted by the key \"num\": " + myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num"));
