@@ -13,7 +13,7 @@ var myLibrary = function () {
 
 // Check for ###-###-#### phone number pattern.
 
-    var validPhone = function(phoneNumber) {
+    var checkPhone = function(phoneNumber) {
         var validNumber;
             if ((phoneNumber.charAt(3) === "-") && (phoneNumber.charAt(7) === "-")) {
                 if ((isNaN(phoneNumber.slice(0,3))===false && isNaN(phoneNumber.slice(4,7))===false && isNaN(phoneNumber.slice(8,11))===false) && (phoneNumber.length === 12)) {
@@ -24,13 +24,12 @@ var myLibrary = function () {
             } else {
                 validNumber = false;
             }
-        var getValidNumber = function () { return validNumber };
-        return getValidNumber();
+        return validNumber;
     };
 
 // Check for valid email address *** MAKE UP ELEMENT
 
-    var validEmail = function (email) {
+    var checkEmail = function (email) {
         var isValid;
             if (email.indexOf(" ") >= 0) {
                 isValid = false;
@@ -39,158 +38,122 @@ var myLibrary = function () {
             } else {
                 isValid = false;
             }
-        var getValidEmail = function() { return isValid; };
-        return getValidEmail();
+        return isValid;
     };
 
+// Check for valid URL
+
+    var checkUrl = function (url) {
+        var validUrl;
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                validUrl = true;
+            } else {
+                validUrl = false;
+            }
+        return validUrl;
+    };
+
+// Convert a string to Title Case (Including a, an, the, etc.)
+
+    var titleCase = function (title) {
+        var titled = [];
+        var words = title.split(" ");                                                    // Splits string into array
+        for (x = 0; x < words.length; x++) {                                         // Cycles through words in array       // MAKE UP: for loop, Deliverable 2
+            var breakOut = words[x];
+            var firstLetter = breakOut.slice(0,1);                                   // Pulls first letter from word
+            var restOfWord = breakOut.slice(1,breakOut.length);                      // Places rest of word in own var
+            var capped = "";                                                         // Creates an empty string to concat into
+            var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());     // Concats the two parts of the word together, with first part capped
+            titled.push(newWord);                                                    // Adds now capped word into array
+        }
+        return titled.join(" ");
+    };
+
+// Switch the separator for a list, such as "," to "/"
+
+    var switchSeparator = function (string, originalSeparator, newSeparator) {
+        var words = string.split(originalSeparator);
+        return words.join(newSeparator)
+    };
+
+// Set decimal to requested place *** MAKE UP ELEMENT
+
+    var decimalPlace = function (number, places) {
+        return number.toFixed(places);                                                                                  // MAKE-UP: Return Number Output, Deliverable 2
+    };
+
+// Fuzzy match - two numbers within a given percent of each other? *** MAKEUP ELEMENTS
+
+    var fuzzyMatch = function (a, b, decimalPercent) {                                                                  // MAKE-UP: Number Data Type, Deliverable 2
+        var diff = Math.abs(a - b);                                                                                     // MAKE-UP: Number variable, Deliverable 2
+        var withinPercent;
+            if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
+                withinPercent = true;
+            } else {
+                withinPercent = false;
+            }
+        return withinPercent;
+    }
 
 
 
 
     return {
-        "validPhone": validPhone,
-        "validEmail": validEmail
+        "checkPhone": checkPhone,
+        "checkEmail": checkEmail,
+        "checkUrl": checkUrl,
+        "titleCase": titleCase,
+        "switchSeparator": switchSeparator,
+        "decimalPlace": decimalPlace
     }
 
 };
 
-var lib = new myLibrary();
+var myLib = new myLibrary();
 
 
 //  1. Does a string follow a 123-456-7890 pattern like a phone number?
 // Calls
-console.log(lib.validPhoneNumber("212-555-1212"));
-console.log(lib.validPhoneNumber("212-55S-121Z"));
-console.log(lib.validPhoneNumber("212.555.1212"));
-console.log(lib.validPhoneNumber("212-555-12121"));
-
+console.log(myLib.checkPhone("212-555-1212"));
+console.log(myLib.checkPhone("212-55S-121Z"));
+console.log(myLib.checkPhone("212.555.1212"));
+console.log(myLib.checkPhone("212-555-12121"));
 
 //  2. Does a string follow an aaa@bbb.ccc pattern like an email address?
 // MAKE UP ELEMENT
 
-console.log(emailAddress.isValidEmail("satr@mac.com"));
-console.log(emailAddress.isValidEmail("satr@ mac.com"));
-console.log(emailAddress.isValidEmail("satr@kiwi.co.nz"));
-console.log(emailAddress.isValidEmail("donkeykong.com"));
-
-
-
+console.log(myLib.checkEmail("satr@mac.com"));
+console.log(myLib.checkEmail("satr@ mac.com"));
+console.log(myLib.checkEmail("satr@kiwi.co.nz"));
+console.log(myLib.checkEmail("donkeykong.com"));
 
 // 3. Is the string a URL? (Does it start with http: or https:?)
 
-console.log("******************************************************************************************************");
-console.log("3. Is the string a URL? (Does it start with http: or https:?)");
-
-
-var url = {
-    isValidUrl: function (url) {
-        var validUrl;
-        if (url.startsWith("http://") || url.startsWith("https://")) {
-            validUrl = true;
-        } else {
-            validUrl = false;
-        }
-        var getValidUrl = function () { return validUrl };
-        return getValidUrl();
-    }
-};
-
-console.log(url.isValidUrl("http://www.domain.com"));
-console.log(url.isValidUrl("https://www.domain.com"));
-console.log(url.isValidUrl("www.domain.com"));
-
-
+console.log(myLib.checkUrl("http://www.domain.com"));
+console.log(myLib.checkUrl("https://www.domain.com"));
+console.log(myLib.checkUrl("www.domain.com"));
 
 //  4. Title-case a string (split into words, then uppercase the first letter of each word)
 //  Make-up Element
 
-console.log("******************************************************************************************************");
-console.log("4. Title-case a string (split into words, then uppercase the first letter of each word) ** 1 MAKE UP ELEMENT");
-
-
-var caseManip = {
-    titleCase: function (title) {
-        var titled = [];
-        var words = title.split(" ");                                                    // Splits string into array
-            for (x = 0; x < words.length; x++) {                                         // Cycles through words in array       // MAKE UP: for loop, Deliverable 2
-                var breakOut = words[x];
-                var firstLetter = breakOut.slice(0,1);                                   // Pulls first letter from word
-                var restOfWord = breakOut.slice(1,breakOut.length);                      // Places rest of word in own var
-                var capped = "";                                                         // Creates an empty string to concat into
-                var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());     // Concats the two parts of the word together, with first part capped
-                titled.push(newWord);                                                    // Adds now capped word into array
-            }
-        var getTitleCase = function () { return titled.join(" ") };
-        return getTitleCase();
-    }
-};
-
-console.log(caseManip.titleCase("it's a dog eat dog world, and I'm wEARing milkbone underwear."));
-
-
+console.log(myLib.titleCase("it's a dog eat dog world, and I'm wEARing milkbone underwear."));
 
 //   5. Given a string that is a list of things separated by a given string, as well as another string separator,
 //      return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".
 
-console.log("******************************************************************************************************");
-console.log("5. Given a string that is a list of things separated by a given string, as well as another string separator,");
-console.log("   return a string with the first separator changed to the second: \"a,b,c\" + \",\" + \"/\" → \"a/b/c\".\"");
-
-
-var stringSeparator = {
-    switch: function (string, originalSeparator, newSeparator) {
-        var words = string.split(originalSeparator);
-        var getNewString = function () { return words.join(newSeparator)};
-        return getNewString();
-    }
-};
-
-console.log(stringSeparator.switch("dogs, cats, fish, bones", ",", " -"));
-
-
+console.log(myLib.switchSeparator("dogs, cats, fish, bones", ",", " -"));
 
 // **** NUMBER FUNCTIONS **** //
 
 //  6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
-// MAKE UP ELEMENT
+// Make-up Element
 
-console.log("******************************************************************************************************");
-console.log("6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10 ** 1 MAKE UP ELEMENTS");
-
-
-var decimalPlace = {
-    setToTwo: function (number, places) {
-        var getNumber = function () { return number.toFixed(places) };
-        return getNumber();                                                                                  // MAKE-UP: Return Number Output, Deliverable 2
-    }
-};
-
-console.log(decimalPlace.setToTwo(36, 4));
-console.log(decimalPlace.setToTwo(3.14159, 2));
-console.log(decimalPlace.setToTwo(796.309, 1));
-
-
+console.log(myLib.decimalPlace(36, 4));
+console.log(myLib.decimalPlace(3.14159, 2));
+console.log(myLib.decimalPlace(796.309, 1));
 
 //  7. Fuzzy-match a number: is the number above or below a number within a certain percent?
-//  MAKE UP ELEMENTS
-
-console.log("******************************************************************************************************");
-console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent? ** 2 MAKE UP ELEMENT");
-
-
-var numberAnalysis = {
-    fuzzyMatch: function (a, b, decimalPercent) {                                                                       // MAKE-UP: Number Data Type, Deliverable 2
-        var diff = Math.abs(a - b);                                                                                     // MAKE-UP: Number variable, Deliverable 2
-        var withinPercent;
-        if (((diff/a) <= decimalPercent) || ((diff/b) <= decimalPercent)) {
-            withinPercent = true;
-        } else {
-            withinPercent = false;
-        }
-        var isItWithin = function () {return withinPercent};
-        return isItWithin();
-    }
-}
+//  Make-up Elements
 
 console.log(numberAnalysis.fuzzyMatch(36,42,.15));
 console.log(numberAnalysis.fuzzyMatch(75,23,.55));
