@@ -24,13 +24,13 @@ var myLibrary = function () {
 // Check for valid email address *** MAKE UP ELEMENT
 
     var checkEmail = function (email) {
-        var isValid;
+        var validEmail;
             if (email.indexOf(" ") >= 0) {
-                isValid = false;
+                validEmail = false;
             } else {
-                isValid = (((email.charAt(email.length - 4) === ".") || (email.charAt(email.lentgh - 3 === "."))) && (email.indexOf("@") >= 0));
+                validEmail = (((email.charAt(email.length - 4) === ".") || (email.charAt(email.length - 3) === "."))) && (email.indexOf("@") >= 0));
             }                                                                                       // MAKE UP: Use of multiple booleans (line above), Deliverable 2
-        return isValid;
+        return validEmail;
     };
 
 // Check for valid URL
@@ -46,10 +46,10 @@ var myLibrary = function () {
     var titleCase = function (title) {
         var titled = [];
         var words = title.split(" ");                                                               // Splits string into array
-        for (var x = 0; x < words.length; x++) {                                                    // Cycles through words in array
-            var breakOut = words[x];                                                           // MAKE UP: for loop, Deliverable 2
-            var firstLetter = breakOut.slice(0,1);                                                  // Pulls first letter from word
-            var restOfWord = breakOut.slice(1,breakOut.length);                                     // Places rest of word in own var
+        for (var x = 0; x < words.length; x++) {                                               // MAKE UP: for loop, Deliverable 2
+            var breakOut = words[x];
+            var firstLetter = breakOut.slice(0,1);
+            var restOfWord = breakOut.slice(1,breakOut.length);
             var capped = "";                                                                        // Creates an empty string to concat into
             var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());      // Concats the two parts of the word together, with first part capped
             titled.push(newWord);                                                                   // Adds now capped word into array
