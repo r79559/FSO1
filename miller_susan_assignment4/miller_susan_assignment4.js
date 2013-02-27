@@ -55,7 +55,6 @@ var myLibrary = function () {
             breakOut = words[x];
             firstLetter = breakOut.slice(0,1);
             restOfWord = breakOut.slice(1,breakOut.length);
-            capped = "";                                                                        // Creates an empty string to concat into
             newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());      // Concats the two parts of the word together, with first part capped
             titled.push(newWord);                                                                   // Adds now capped word into array
         }
@@ -80,15 +79,15 @@ var myLibrary = function () {
     var fuzzyMatch = function (a, b, decimalPercent) {                                             // MAKE-UP: Number Data Type, Deliverable 2
         var diff = Math.abs(a - b);                                                                // MAKE-UP: Number variable, Deliverable 2
         var withinPercent;
-            withinPercent = ((diff / a) <= decimalPercent) || ((diff / b) <= decimalPercent);
+        withinPercent = ((diff / a) <= decimalPercent) || ((diff / b) <= decimalPercent);
         return withinPercent;
     };
 
 // Calculate the difference between two dates in hours or days
 
-    var dateDiff = function (var1, var2, hoursOrDays) {
-        var dateA = new Date(var1);
-        var dateB = new Date(var2);
+    var dateDiff = function (date1, date2, hoursOrDays) {
+        var dateA = new Date(date1);
+        var dateB = new Date(date1);
         var difference;
         var elapsed = dateB - dateA;
             if (hoursOrDays === "hours") {
