@@ -44,14 +44,19 @@ var myLibrary = function () {
 // Convert a string to Title Case (Including a, an, the, etc.) *** MAKE UP ELEMENT
 
     var titleCase = function (title) {
-        var titled = [];
         var words = title.split(" ");                                                               // Splits string into array
+        var titled = [];
+        var capped = "";
+        var breakOut;
+        var firstLetter;
+        var restOfWord;
+        var newWord;
         for (var x = 0; x < words.length; x++) {                                               // MAKE UP: for loop, Deliverable 2
-            var breakOut = words[x];
-            var firstLetter = breakOut.slice(0,1);
-            var restOfWord = breakOut.slice(1,breakOut.length);
-            var capped = "";                                                                        // Creates an empty string to concat into
-            var newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());      // Concats the two parts of the word together, with first part capped
+            breakOut = words[x];
+            firstLetter = breakOut.slice(0,1);
+            restOfWord = breakOut.slice(1,breakOut.length);
+            capped = "";                                                                        // Creates an empty string to concat into
+            newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());      // Concats the two parts of the word together, with first part capped
             titled.push(newWord);                                                                   // Adds now capped word into array
         }
         return titled.join(" ");
