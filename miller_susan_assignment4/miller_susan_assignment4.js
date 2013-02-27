@@ -28,7 +28,7 @@ var myLibrary = function () {
             if (email.indexOf(" ") >= 0) {
                 validEmail = false;
             } else {
-                validEmail = (((email.charAt(email.length - 4) === ".") || (email.charAt(email.length - 3) === "."))) && (email.indexOf("@") >= 0));
+                validEmail = (((email.charAt(email.length - 4) === ".") || (email.charAt(email.length - 3) === ".")) && (email.indexOf("@") >= 0));
             }                                                                                       // MAKE UP: Use of multiple booleans (line above), Deliverable 2
         return validEmail;
     };
