@@ -71,20 +71,22 @@ var myLibrary = function () {
 // Set decimal to requested place *** MAKE UP ELEMENT
 
     var decimalPlace = function (number, places) {
-        number = this.stringToNum(number);
-        places = this.stringToNum(places);
-        return number.toFixed(places);                                                             // MAKE-UP: Return Number Output, Deliverable 2
+          var a = Number(number);
+          var b = Number(places);
+        if ((isNaN(a) === true) || (isNan(b) === true)) { return "Please use valid numerals."}
+        return a.toFixed(b);                                                             // MAKE-UP: Return Number Output, Deliverable 2
     };
 
 // Fuzzy match - two numbers within a given percent of each other? *** MAKEUP ELEMENTS
 
     var fuzzyMatch = function (a, b, decimalPercent) {                                             // MAKE-UP: Number Data Type, Deliverable 2
-        var diff = Math.abs(a - b);                                                                // MAKE-UP: Number variable, Deliverable 2
+        var numA = Number(a);
+        var numB = Number(b);
+        var decimal = Number(decimalPercent);
+        var diff = Math.abs(numA - numB);                                                                // MAKE-UP: Number variable, Deliverable 2
         var withinPercent;
-        if (isNaN(a) === true) { a = this.stringToNum(a); }
-        if (isNaN(b) === true) { b = this.stringToNum(b); }
-        if (isNaN(decimalPercent) === true) { decimalPercent = this.stringToNum(decimalPercent); }
-        withinPercent = ((diff / a) <= decimalPercent) || ((diff / b) <= decimalPercent);
+        if ((isNaN(numA) === true) || (isNaN(numB) === true) || (isNaN(decimal) === true)) { return "Please use valid numerals."; }
+        withinPercent = ((diff / numA) <= decimal) || ((diff / numB) <= decimal);
         return withinPercent;
     };
 
@@ -245,6 +247,7 @@ console.log("                      MAKE UP ELEMENTS");
 console.log("36 and 42 within 15%? " + myLib.fuzzyMatch(36,42,.15));
 console.log("75 and 23 within 55%? " + myLib.fuzzyMatch(75,23,.55));
 console.log("83 and 47 within 32%? (as strings) " + myLib.fuzzyMatch("83","47",".32"));
+console.log("83 and 47 within 32%? (as strings) " + myLib.fuzzyMatch("thirty-six","forty-two","15%"));
 
 console.log(" ");
 console.log("8. Find the number of hours or days difference between two dates.");
