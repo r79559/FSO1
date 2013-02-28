@@ -41,23 +41,27 @@ var myLibrary = function () {
         return validUrl;
     };
 
-// Convert a string to Title Case (Including a, an, the, etc.) *** MAKE UP ELEMENT
+// Convert a string to Title Case *** MAKE UP ELEMENT
 
     var titleCase = function (title) {
         var words = title.split(" ");                                                               // Splits string into array
         var titled = [];
+        var noCap = [ "a", "an", "the", "of", "and", "but", "or", "for", "nor", "yet" ];            // Sets words that should not be capped until first word
         var capped = "";
         var breakOut;
         var firstLetter;
         var restOfWord;
         var newWord;
-        for (var x = 0; x < words.length; x++) {                                               // MAKE UP: for loop, Deliverable 2
-            breakOut = words[x];
-            firstLetter = breakOut.slice(0,1);
-            restOfWord = breakOut.slice(1,breakOut.length);
-            newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());      // Concats the two parts of the word together, with first part capped
-            titled.push(newWord);                                                                   // Adds now capped word into array
-        }
+            for (var x = 0; x < words.length; x++) {                                               // MAKE UP: for loop, Deliverable 2
+                breakOut = words[x];
+                    if ((x != 0) && (noCap.indexOf(breakOut) >= 0)) {titled.push(breakOut)}
+                    else {
+                        firstLetter = breakOut.slice(0,1);
+                        restOfWord = breakOut.slice(1,breakOut.length);
+                        newWord = capped.concat(firstLetter.toUpperCase() + restOfWord.toLowerCase());      // Concats the two parts of the word together, with first part capped
+                        titled.push(newWord);                                                                   // Adds now capped word into array
+                    }
+            }
         return titled.join(" ");
     };
 
@@ -71,9 +75,9 @@ var myLibrary = function () {
 // Set decimal to requested place *** MAKE UP ELEMENT
 
     var decimalPlace = function (number, places) {
-          var a = Number(number);
-          var b = Number(places);
-        if ((isNaN(a) === true) || (isNan(b) === true)) { return "Please use valid numerals."}
+        var a = Number(number);
+        var b = Number(places);
+            if ((isNaN(a) === true) || (isNaN(b) === true)) { return "Please use valid numerals."}
         return a.toFixed(b);                                                             // MAKE-UP: Return Number Output, Deliverable 2
     };
 
@@ -85,7 +89,7 @@ var myLibrary = function () {
         var decimal = Number(decimalPercent);
         var diff = Math.abs(numA - numB);                                                                // MAKE-UP: Number variable, Deliverable 2
         var withinPercent;
-        if ((isNaN(numA) === true) || (isNaN(numB) === true) || (isNaN(decimal) === true)) { return "Please use valid numerals."; }
+            if ((isNaN(numA) === true) || (isNaN(numB) === true) || (isNaN(decimal) === true)) { return "Please use valid numerals."; }
         withinPercent = ((diff / numA) <= decimal) || ((diff / numB) <= decimal);
         return withinPercent;
     };
@@ -132,7 +136,7 @@ var myLibrary = function () {
                 if ((value !== false) && (value !== true)) {                                                // Keeps Booleans from reappearing in array.
                     isIt = isNaN(value);
                     if (isIt === false) {
-                        numericArray.push(value)                                                            // Adds numeric values to numeric-only array.
+                        numericArray.push(value);                                                            // Adds numeric values to numeric-only array.
                     }
                 }
             }
@@ -217,10 +221,11 @@ console.log("https://www.domain.com: " + myLib.checkUrl("https://www.domain.com"
 console.log("www.domain.com: " + myLib.checkUrl("www.domain.com"));
 
 console.log(" ");
-console.log("4. Title-case a string (split into words, then uppercase the first letter of each word)");
+console.log("4. Title-case a string (split into words, then uppercase the first letter of each word (except user specified words, such as a, an, the, etc.))");
 console.log("                      MAKE UP ELEMENT");
 
 console.log("it's a dog eat dog world, and I'm wEARing milkbone underwear >> " + myLib.titleCase("it's a dog eat dog world, and I'm wEARing milkbone underwear."));
+console.log("an apple a day keeps the doctor away, and for every season, there is an allergy. >> " + myLib.titleCase("an apple a day keeps the doctor away, and for every season, there is an allergy."));
 
 console.log(" ");
 console.log("5. Given a string that is a list of things separated by a given string, as well as another string separator,");
@@ -247,14 +252,14 @@ console.log("                      MAKE UP ELEMENTS");
 console.log("36 and 42 within 15%? " + myLib.fuzzyMatch(36,42,.15));
 console.log("75 and 23 within 55%? " + myLib.fuzzyMatch(75,23,.55));
 console.log("83 and 47 within 32%? (as strings) " + myLib.fuzzyMatch("83","47",".32"));
-console.log("83 and 47 within 32%? (as strings) " + myLib.fuzzyMatch("thirty-six","forty-two","15%"));
+console.log("Thirty-six and forty-two within 15%? (as strings) " + myLib.fuzzyMatch("thirty-six","forty-two","15%"));
 
 console.log(" ");
 console.log("8. Find the number of hours or days difference between two dates.");
 
 console.log("How many days apart are 10/31/2001 and 2/29/2004? " + myLib.dateDiff("10/31/2001", "2/29/2004", "days"));
 console.log("How many hours apart are 10/31/2001 and 2/29/2004? " + myLib.dateDiff("10/31/2001", "2/29/2004", "hours"));
-console.log("How many days apart are May 17, 2005 and July 13, 2005? " + myLib.dateDiff("May 17, 2005", "July 13, 2005", "days"));
+console.log("How many days apart are February 29, 2004 and February 28, 2013? " + myLib.dateDiff("February 29, 2004", "February 28, 2013", "days"));
 console.log("How many days apart are May 17, 1977 at 10:59am and July 13, 2005 at 7:26pm? " + myLib.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "days"));
 console.log("How many hours apart are May 17, 1977 at 10:59am and July 13, 2005 at 7:26pm? " + myLib.dateDiff("May 17, 1977 10:59 AM", "July 13, 2005 7:26 PM", "hours"));
 
