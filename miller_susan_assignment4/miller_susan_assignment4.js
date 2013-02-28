@@ -71,6 +71,8 @@ var myLibrary = function () {
 // Set decimal to requested place *** MAKE UP ELEMENT
 
     var decimalPlace = function (number, places) {
+        number = this.stringToNum(number);
+        places = this.stringToNum(places);
         return number.toFixed(places);                                                             // MAKE-UP: Return Number Output, Deliverable 2
     };
 
@@ -79,15 +81,18 @@ var myLibrary = function () {
     var fuzzyMatch = function (a, b, decimalPercent) {                                             // MAKE-UP: Number Data Type, Deliverable 2
         var diff = Math.abs(a - b);                                                                // MAKE-UP: Number variable, Deliverable 2
         var withinPercent;
+        if (isNaN(a) === true) { a = this.stringToNum(a); }
+        if (isNaN(b) === true) { b = this.stringToNum(b); }
+        if (isNaN(decimalPercent) === true) { decimalPercent = this.stringToNum(decimalPercent); }
         withinPercent = ((diff / a) <= decimalPercent) || ((diff / b) <= decimalPercent);
         return withinPercent;
     };
 
 // Calculate the difference between two dates in hours or days
 
-    var dateDiff = function (date1, date2, hoursOrDays) {
-        var dateA = new Date(date1);
-        var dateB = new Date(date1);
+    var dateDiff = function (firstDate, secondDate, hoursOrDays) {
+        var dateA = new Date(firstDate);
+        var dateB = new Date(secondDate);
         var difference;
         var elapsed = dateB - dateA;
             if (hoursOrDays === "hours") {
@@ -117,9 +122,20 @@ var myLibrary = function () {
 //  Find the smallest value in an array that is larger than a given number
 
     var arrayValue = function (array, value) {
-        array.push(value);                                                                          // Adds the given value to the array
-        array.sort(function (a,b) {return a - b;});                                                 // Sorts the array numerically
-        return array[(array.indexOf(value) + 1)];                                                   // Returns next highest number
+        var numericArray = [];
+        var isIt;
+        array.push(value);
+            for (var x = 0; x < array.length; x++) {
+                value = array[x];
+                if ((value !== false) && (value !== true)) {                                                // Keeps Booleans from reappearing in array.
+                    isIt = isNaN(value);
+                    if (isIt === false) {
+                        numericArray.push(value)                                                            // Adds numeric values to numeric-only array.
+                    }
+                }
+            }
+        numericArray.sort(function (a,b) {return a - b;});                                                  // Sorts the array numerically
+        return numericArray[(numericArray.lastIndexOf(value) + 1)];                                             // Returns next highest number
     };
 
 //  Total the number, whether entered as numbers or strings, in an array including mixture of variable types *** MAKE UP ELEMENT
@@ -128,7 +144,7 @@ var myLibrary = function () {
         var total = 0;
         var value;
         var isIt;
-            for (x = 0; x < array.length; x++) {
+            for (var x = 0; x < array.length; x++) {
                 value = array[x];
                 if ((value !== false) && (value !== true)) {                                        // Keeps Booleans from reappearing in array.
                     isIt = isNaN(value);
@@ -220,6 +236,7 @@ console.log("                      MAKE UP ELEMENT");
 console.log("36 to 4 decimal places: " + myLib.decimalPlace(36, 4));
 console.log("3.14159 to 2 decimal places: " + myLib.decimalPlace(3.14159, 2));
 console.log("796.309 to 1 decimal place: " + myLib.decimalPlace(796.309, 1));
+console.log("796.309 to 1 decimal place (as strings): " + myLib.decimalPlace("796.309", "1"));
 
 console.log(" ");
 console.log("7. Fuzzy-match a number: is the number above or below a number within a certain percent?");
@@ -227,6 +244,7 @@ console.log("                      MAKE UP ELEMENTS");
 
 console.log("36 and 42 within 15%? " + myLib.fuzzyMatch(36,42,.15));
 console.log("75 and 23 within 55%? " + myLib.fuzzyMatch(75,23,.55));
+console.log("83 and 47 within 32%? (as strings) " + myLib.fuzzyMatch("83","47",".32"));
 
 console.log(" ");
 console.log("8. Find the number of hours or days difference between two dates.");
@@ -243,7 +261,7 @@ console.log("9. Given a string version of a number such as \"42\", return the va
 console.log("String = \"48,930\": " + myLib.stringToNum("48,930"));
 console.log("String = \"37.4\": " + myLib.stringToNum("37.4"));
 console.log("String = \"42\": " + myLib.stringToNum("42"));
-console.log("String = \'Bob\": " + myLib.stringToNum("Bob"));
+console.log("String = \"Bob\": " + myLib.stringToNum("Bob"));
 
 console.log(" ");
 console.log("**** ARRAY FUNCTIONS ****");
@@ -251,7 +269,10 @@ console.log(" ");
 
 console.log("10. Find the smallest value in an array that is greater than a given number");
 
-console.log("The smallest value in the array [5, 17, 11, 4, 7, 13] that is greater than 9 is: " + myLib.arrayValue([5, 17, 11, 4, 7, 13], 9));
+console.log("The smallest value in the array [5, 17, 11, 4, 7, 13] that is greater than 9 is: " + myLib.arrayValue([5, 17, 11, 4, , 7, 13], 9));
+console.log("The smallest value in the array [5, 17, 11, 4, 9, 7, 13] that is greater than 9 is: " + myLib.arrayValue([5, 17, 11, 4, , 9, 7, 13], 9));
+console.log("The smallest value in the array [5, \"17\", \"dog\", 4, false, 13] that is greater than 9 is: " + myLib.arrayValue([5, "17", "dog", 4, false, 13], 9));
+console.log("The smallest value in the array [5, \"17\", \"dog\", \"9\", 9, 4, false, 13] that is greater than 9 is: " + myLib.arrayValue([5, "17", "dog", "9", 9, 4, false, 13], 9));
 
 console.log(" ");
 console.log("11. Find the total value of just the numbers in an array, even if some of the items are not numbers.");
@@ -263,5 +284,5 @@ console.log(" ");
 console.log("12. Given an array of objects and the name of a key, return the array sorted by the value of that key");
 console.log("    in each of the objects: \"a\" + [{a:2},{a:3},{a:1}] → [{a:1},{a:2},{a:3}].");
 
-console.log("Sorted by the key \"b\": " + myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b"));
-console.log("Sorted by the key \"num\": " + myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num"));
+console.log("Sorted by the key \"b\": ", myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "b"));
+console.log("Sorted by the key \"num\": ", myLib.keySort([{num:3, b:"dog"}, {num:32, b:"cat"}, {num:93, b:"fish"}, {num:5, b:"giraffe"}, {num:6, b:"monkey"}], "num"));
