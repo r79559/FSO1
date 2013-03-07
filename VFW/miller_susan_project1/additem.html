@@ -38,13 +38,16 @@
     <fieldset>
         <legend>Chore Details</legend>
         <ul>
+        <li>Date Due </li>
         <li>Are you done?
-            <li><input type = "radio" checked value = "Not Yet" id = "no" name = "complete" /></li>
-            <li><input type = "radio" value = "Yessiree!" id = "yes" name = "complete" /></li>
-
+            <ul>
+            <li><input type = "radio" checked value = "Not Yet" id = "no" name = "complete" /><label for = "no"> Not Yet</label></li>
+            <li><input type = "radio" value = "Yessiree!" id = "yes" name = "complete" /><label for = "yes"> Yessiree!</label></li>
+            </ul>
         </li>
         </ul>
     </fieldset>
+    <input type = "submit" value = "Submit" />
 </form>
 
 
