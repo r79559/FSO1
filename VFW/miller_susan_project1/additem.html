@@ -25,11 +25,11 @@
     <ul>
         <li><label for = "choretype">Select the Type of Chore  </label>
             <select id = "choretype">
-            <option value = "House">House</option>
-            <option value = "Hygiene">Hygiene</option>
-            <option value = "Pet">Pet</option>
-            <option value = "School">School</option>
-        </select></li>
+                <option value = "House">House</option>
+                <option value = "Hygiene">Hygiene</option>
+                <option value = "Pet">Pet</option>
+                <option value = "School">School</option>
+            </select></li>
 
         <li><label for = "person">Who is Responsible?  </label><input type = "text" id = "person" /></li>
     </ul>
@@ -38,15 +38,17 @@
     <fieldset>
         <legend>Chore Details</legend>
         <ul>
-        <li><label for = "duedate">Date Due </label></li>
+        <li><label for = "duedate">Date Due </label>
             <ul>
                 <li><input type = "date" id = "duedate" name = "duedate" /></li>
             </ul>
-        <li><label for = "difficulty">Difficulty </label></li>
+        </li>
+        <li><label for = "difficulty">Difficulty </label>
             <ul>
                 <li><input type = "range" id = "difficulty" name = "difficulty" step = "1" value = "5" min = "1" max = "10" /></li>
             </ul>
-        <li>Are you done?</li>
+        </li>
+        <li>Are you done?
             <ul>
                 <li><input type = "radio" checked value = "Not Yet" id = "no" name = "complete" /><label for = "no"> Not Yet</label></li>
                 <li><input type = "radio" value = "Yessiree!" id = "yes" name = "complete" /><label for = "yes"> Yessiree!</label></li>
