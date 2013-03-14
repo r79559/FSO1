@@ -10,4 +10,7 @@ var dateDue = document.getElementById("duedate");
 var howHard = document.getElementById("difficulty");
 var notDone = document.getElementById("no");
 var itsDone = document.getElementById("yes");
+var showChores = document.getElementById("showAll");
+var resetChores = document.getElementById("resetAll");
+
 

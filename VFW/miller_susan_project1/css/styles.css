@@ -79,14 +79,17 @@ option {
 }
 
 a {
-    background-color: darkgreen;
-    padding: 10px;
-    border: 2px solid darkgoldenrod;
     text-decoration: none;
-    text-weight: em;
-    color: goldenrod;
 }
 
 p{
     padding-bottom: 10px;
+}
+
+button{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 10px;
+    border: 2px solid darkgoldenrod;
 }
