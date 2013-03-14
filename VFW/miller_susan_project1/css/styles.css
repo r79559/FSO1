@@ -6,7 +6,7 @@ body {
 }
 
 /* emulating iPhone 4S screen size */
-#content{
+#content {
     width: 640px;
     height: 960px;
     overflow: scroll;
@@ -82,11 +82,11 @@ a {
     text-decoration: none;
 }
 
-p{
+p {
     padding-bottom: 10px;
 }
 
-button{
+button {
     font-size: 15px;
     font-weight: bold;
     padding: 5px;
