@@ -29,7 +29,7 @@ h2 {
     opacity: 0.8;
     color: darkgreen;
     font-variant: titling-caps;
-    margin: 20px 3px 5px 5px;
+    margin: 10px 3px 5px 5px;
     padding: 10px;
     text-align: center;
     width: 610px;
@@ -66,13 +66,13 @@ option {
     line-height: 1.5em;
 }
 
-#container {
+.container {
     background-color: lightgoldenrodyellow;
     opacity: 0.8;
     color: goldenrod;
     font-weight: lighter;
     text-align: center;
-    margin: 20px 5px 5px 5px;
+    margin: 10px 5px 5px 5px;
     padding: 10px;
     width: 610px;
     border: 1px solid darkgoldenrod;
@@ -89,7 +89,17 @@ p {
 button {
     font-size: 15px;
     font-weight: bold;
+    text-align: center;
     padding: 5px;
     margin: 10px;
     border: 2px solid darkgoldenrod;
+}
+
+.item {
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    margin: 10px 5px 5px 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
 }
