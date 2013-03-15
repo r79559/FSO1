@@ -9,56 +9,72 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // getElementById Function
     function $(x){
-        var theElement = document.getElementbyId(x);
+        var theElement = document.getElementById(x);
         return theElement;
     }
 
-var main = $("content");
-
-// shortcut variables
-var type = $("choretype");
-var chore = $("chorename");
-var who = $("person");
-var date = $("duedate");
-var effort = $("difficulty");
-var done = $("chores").complete;
-var addChore = $("addNew");
-var showChores = $("showAll");
-var resetChores = $("resetAll");
-
-var choreTypes = ["Select a Chore Type", "House", "Hygiene", "Pet", "School"];
-
-
-
-
-var empty = function () {
-    var check = confirm("Are you sure you want to clear all chores?");
-    if (check) {
-        localStorage.clear();
-    } else {
-        alert("Let me know if you reconsider.");
+    // Create and populate chore types
+    function listTypes(){
+        var formTag = document.getElementsByTagName("form"),
+            selectLi = $("select"),
+            makeSelect = document.createElement("select");
+            makeSelect.setAttribute("id", "choretype");
+        for (var i = 0, j = choreTypes.length; i<j; i++) {
+            var makeOption = document.createElement("option");
+            var optText = choreTypes[i];
+            makeOption.setAttribute("value", optText);
+            makeOption.innerHTML = optText;
+            makeSelect.appendChild(makeOption);
+        }
+        selectLi.appendChild(makeSelect);
     }
-};
+
+    var main = $("content");
+
+    var choreTypes = ["Select a Chore Type", "House", "Hygiene", "Pet", "School"];
+    listTypes();
+
+    // shortcut variables
+    var type = $("choretype");
+    var chore = $("chorename");
+    var who = $("person");
+    var date = $("duedate");
+    var effort = $("difficulty");
+    var done = $("chores").complete;
+    var addChore = $("addNew");
+    var showChores = $("showAll");
+    var resetChores = $("resetAll");
 
 
 
 
-// listeners
 
-type.addEventListener("blur", captureChore);
-who.addEventListener("blur", captureWho);
-date.addEventListener("click", captureDate);
-effort.addEventListener("click", captureEffort);
+    var empty = function () {
+        var check = confirm("Are you sure you want to clear all chores?");
+        if (check) {
+            localStorage.clear();
+        } else {
+            alert("Let me know if you reconsider.");
+        }
+    };
 
-addChore.addEventListener("click", saveChore);
-showChores.addEventListener("click", showAll);
-resetChores.addEventListener("click", empty);
 
 
-/*
-var addChore = document.getElementById("addNew");
-var showChores = document.getElementById("showAll");
-var resetChores = document.getElementById("resetAll");
+
+    // listeners
+
+    type.addEventListener("blur", captureChore);
+    who.addEventListener("blur", captureWho);
+    date.addEventListener("click", captureDate);
+    effort.addEventListener("click", captureEffort);
+
+    addChore.addEventListener("click", saveChore);
+    showChores.addEventListener("click", showAll);
+    resetChores.addEventListener("click", empty);
+
+
+/*  PERHAPS FOR SHOWING DATA
+
 
 var ulList = document.createElement("ul");
 
@@ -77,7 +93,7 @@ for (i=0, j=info.length; i<j; i++) {
 console.log(newDiv);
 */
 
-/*
+/*  TEMPORARILY STORE PARTIAL DATA
 // capture functions
     var captureChore = function (){
         localStorage.setItem("Chore Type", type.value);
