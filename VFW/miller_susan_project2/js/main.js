@@ -80,7 +80,7 @@ window.addEventListener("DOMContentLoaded", function() {
     var showAll = function () {
         var newDiv = document.createElement("div");
         newDiv.setAttribute("class", "item");
-        document.body.appendChild(newDiv);
+        $("content").appendChild(newDiv);
         var ulList = document.createElement("ul");
         newDiv.appendChild(ulList);
         for (var i=0, j=localStorage.length; i<j; i++) {
@@ -91,10 +91,10 @@ window.addEventListener("DOMContentLoaded", function() {
             var item = JSON.parse(value);
             var itemize = document.createElement("ol");
             ulBullet.appendChild(itemize);
-                for (var n in item) {
+                for (var m = 0, n = item.length; m<n; i++) {
                     var newItem = document.createElement("li");
                     itemize.appendChild(newItem);
-                    var itemValue = item[n][0] = ": " + item[n][1];
+                    var itemValue = item[m][0] = ": " + item[m][1];
                     newItem.innerHTML = itemValue;
                 }
         }
