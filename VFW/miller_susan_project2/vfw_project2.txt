@@ -1,0 +1,12 @@
+Git Hub Direct Link:
+
+https://github.com/r79559/FSO1/tree/master/VFW/miller_susan_project1
+
+If that doesn't work:
+
+https://github.com/r79559/FSO1.git
+
+VFW folder
+miller_susan_project1
+
+It's project 2, I promise.  I pulled a copy of 1 out into my Full Sail folder, but forgot to update my GitHub folder name.
