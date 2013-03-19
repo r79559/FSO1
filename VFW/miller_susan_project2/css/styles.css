@@ -9,7 +9,7 @@ body {
 #content {
     width: 640px;
     height: 960px;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 h1 {
@@ -79,6 +79,7 @@ option {
 }
 
 a {
+    color: black;
     text-decoration: none;
 }
 
@@ -86,7 +87,13 @@ p {
     padding-bottom: 10px;
 }
 
-button {
+#buttonRow {
+    text-align: center;
+    padding: 10px;
+}
+
+.button {
+    background-color: darkgoldenrod;
     font-size: 15px;
     font-weight: bold;
     text-align: center;

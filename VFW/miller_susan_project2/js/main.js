@@ -1,9 +1,8 @@
 //
 // Author: Susan R. Miller
 // Course: VFW 1303
-// Week 2
-//  Note: If I can't get the localStorage to cooperate, I have no idea where to
-//        start on recalling.  It'll clear, though!
+// Week 3
+//
 
 // assures DOM loaded
 window.addEventListener("DOMContentLoaded", function() {
@@ -89,6 +88,9 @@ window.addEventListener("DOMContentLoaded", function() {
             var key = localStorage.key[i];
             var value = localStorage.getItem(key);
             var item = JSON.parse(value);
+
+            console.log(item);
+
             var itemize = document.createElement("ol");
             ulBullet.appendChild(itemize);
                 for (var m = 0, n = item.length; m<n; i++) {
