@@ -79,24 +79,21 @@ window.addEventListener("DOMContentLoaded", function() {
     var showAll = function () {
         var newDiv = document.createElement("div");
         newDiv.setAttribute("class", "item");
-        $("content").appendChild(newDiv);
-        var ulList = document.createElement("ul");
-        newDiv.appendChild(ulList);
+        document.body.appendChild(newDiv);
+        var olList = document.createElement("ol");
+        newDiv.appendChild(olList);
         for (var i=0, j=localStorage.length; i<j; i++) {
-            var ulBullet = document.createElement("li");
-            ulList.appendChild(ulBullet);
-            var key = localStorage.key[i];
+            var olBullet = document.createElement("li");
+            olList.appendChild(olBullet);
+            var key = localStorage.key(i);
             var value = localStorage.getItem(key);
             var item = JSON.parse(value);
-
-            console.log(item);
-
-            var itemize = document.createElement("ol");
-            ulBullet.appendChild(itemize);
-                for (var m = 0, n = item.length; m<n; i++) {
+            var itemize = document.createElement("ul");
+            olBullet.appendChild(itemize);
+                for (m in item) {
                     var newItem = document.createElement("li");
                     itemize.appendChild(newItem);
-                    var itemValue = item[m][0] = ": " + item[m][1];
+                    var itemValue = item[m][0] + " " + item[m][1];
                     newItem.innerHTML = itemValue;
                 }
         }
