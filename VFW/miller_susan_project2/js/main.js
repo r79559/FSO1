@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function() {
     var showChoresTop = $("showAllTop");
     var resetChores = $("resetAll");
     var resetChoresTop = $("resetAllTop");
-
+    var errorMsg = $("errors");
 
 
     /* Create and populate chore types */
@@ -83,8 +83,13 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     // Saves chore
-    function saveChore() {
-        var id = Math.floor(Math.random()*1000000);
+    function saveChore(key) {
+        // Check for existing key, set one if needed
+        if(!key){
+            var id = Math.floor(Math.random()*1000000);
+        } else {
+            id = key;
+        }
         // Gather and store values as object with form label and value
         radioCheck();
         var item = {};
@@ -94,39 +99,44 @@ window.addEventListener("DOMContentLoaded", function() {
             item.date = ["Date Due: ", $("duedate").value];
             item.effort = ["Level of Difficulty: ", $("difficulty").value];
             item.done = ["Is it Done? ", doneValue];
+
         // Save to localStorage
         localStorage.setItem(id, JSON.stringify(item));
         alert("Your chore has been saved!");
     }
 
     function showAll() {   // want to work on how CSS outputs this so each chore is in own div class item
-        toggleControls("on");
-        var newContainer = document.createElement("div");
-        newContainer.setAttribute("id", "data");
-        document.body.appendChild(newContainer);
-        var olList = document.createElement("ol");
-        newContainer.appendChild(olList);
-        $("data").style.display = "block";
-        for (var i=0, j=localStorage.length; i<j; i++) {
-            var itemLinks = document.createElement("li");
-            var newDiv = document.createElement("div");
-            newDiv.setAttribute("class", "item");
-            olList.appendChild(newDiv);
-            var olBullet = document.createElement("li");
-            newDiv.appendChild(olBullet);
-            var key = localStorage.key(i);
-            var value = localStorage.getItem(key);
-            var item = JSON.parse(value);
-            var itemize = document.createElement("ul");
-            olBullet.appendChild(itemize);
-                for (var m in item) {
-                    var newItem = document.createElement("li");
-                    itemize.appendChild(newItem);
-                    var itemValue = item[m][0] + " " + item[m][1];
-                    newItem.innerHTML = itemValue;
-                    itemize.appendChild(itemLinks);
-                }
-            makeItemLinks(key, itemLinks); /* may need to set as value of key instead */
+        if (localStorage.length >= 1) {
+            toggleControls("on");
+            var newContainer = document.createElement("div");
+            newContainer.setAttribute("id", "data");
+            document.body.appendChild(newContainer);
+            var olList = document.createElement("ol");
+            newContainer.appendChild(olList);
+            $("data").style.display = "block";
+            for (var i=0, j=localStorage.length; i<j; i++) {
+                var itemLinks = document.createElement("li");
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "item");
+                olList.appendChild(newDiv);
+                var olBullet = document.createElement("li");
+                newDiv.appendChild(olBullet);
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                var item = JSON.parse(value);
+                var itemize = document.createElement("ul");
+                olBullet.appendChild(itemize);
+                    for (var m in item) {
+                        var newItem = document.createElement("li");
+                        itemize.appendChild(newItem);
+                        var itemValue = item[m][0] + " " + item[m][1];
+                        newItem.innerHTML = itemValue;
+                        itemize.appendChild(itemLinks);
+                    }
+                makeItemLinks(key, itemLinks);
+            }
+        } else {
+            alert("You don't have any chores stored at this time.");
         }
     }
 
@@ -147,7 +157,7 @@ window.addEventListener("DOMContentLoaded", function() {
         deleteLink.className = "small";
         deleteLink.key = key;
         var deleteText = "Delete This Chore";
-///        deleteLink.addEventListener("click", deleteChore);
+        deleteLink.addEventListener("click", deleteChore);
         deleteLink.innerHTML = deleteText;
         itemLinks.appendChild(deleteLink);
     }
@@ -183,11 +193,41 @@ window.addEventListener("DOMContentLoaded", function() {
         editSubmit.key = this.key;
     }
 
-    function validate() {
+    function deleteChore() {
+        radioCheck();
+        if (doneValue === "Yessiree!") {
+            var ask = confirm("Looks like you're done!  Ready to delete this chore?");
+            if(ask){
+                localStorage.removeItem(this.key);
+                window.location.reload();
+            } else {
+                var assure = confirm("If you're really done, you can delete it.")
+                if(assure){
+                    localStorage.removeItem(this.key);
+                    window.location.reload();
+                } else {
+                    alert("That's okay.  Let me know when you're ready to delete it.")
+                }
+            }
+        } else {
+            alert("Oops!  Looks like you're not done with this chore yet!\nYou can't delete it quite yet.")
+        }
+    }
+
+    function validate(e) {
         var getType = $("choretype");
         var getName = $("chorename");
-        var getPerson = $("Person");
+        var getPerson = $("person");
         var getDate = $("duedate");
+
+        //Error Message Reset
+
+        errorMsg.innerHTML = "";
+        getType.style.border = "1px solid black";
+        getName.style.border = "1px solid black";
+        getPerson.style.border = "1px solid black";
+        getDate.style.border = "1px solid black";
+
 
         //Error Messages
         var msgs = [];
@@ -216,23 +256,44 @@ window.addEventListener("DOMContentLoaded", function() {
         //Due Date Validation
         var rex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
         if(!(rex.exec(getDate.value))) {
-            var dateError = "Please enter a valid date.";
+            var dateError = "Please enter a valid date in mm/dd/yyyy format.";
             getDate.style.border = "1px solid red";
             msgs.push(dateError);
         }
 
         //Display errors
         if (msgs.length >= 1){
-
+            for (var i = 0, j = msgs.length; i<j; i++) {
+                var text = document.createElement("li");
+                text.innerHTML = msgs[i];
+                errorMsg.appendChild(text);
+            }
+            e.preventDefault();
+            return false;
+        } else {
+            //Save Chore if all is well.  Send key value through.
+            saveChore(this.key);
         }
+
     }
 
     function empty() {
         var check = confirm("Are you sure you want to clear all chores?");
         if (check) {
-            localStorage.clear();
+            var again = confirm("Are you REALLY sure you want to clear all chores?")
+            if (again) {
+                var certain = confirm("Mom knows if you're deleting them without finishing.  You know this, right?")
+                if (certain) {
+                    localStorage.clear();
+                    window.location.reload();
+                } else {
+                    alert("Smart move.")
+                }
+            } else {
+                alert("I thought so.")
+            }
         } else {
-            alert("Let me know if you reconsider.");
+            alert("Good job!");
         }
     }
 
