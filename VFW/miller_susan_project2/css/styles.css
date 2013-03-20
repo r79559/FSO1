@@ -31,7 +31,7 @@ h2 {
 }
 
 
-form {
+#choreform {
     background-color: lightgoldenrodyellow;
     opacity: 0.8;
     margin: 5px;
@@ -77,13 +77,37 @@ a {
     text-decoration: none;
 }
 
+a.small {
+    font-size: 15px;
+    text-decoration: underline;
+    margin: 5px;
+    padding: 2px;
+}
+
 p {
     padding-bottom: 10px;
 }
 
-#buttonRow {
+#buttonRowTop {
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    width: 630px;
+    border: 1px solid darkgoldenrod;
     text-align: center;
-    padding: 10px;
+}
+
+#buttonRowBottom {
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    width: 630px;
+    border: 1px solid darkgoldenrod;
+    text-align: center;
 }
 
 .button {
@@ -96,6 +120,11 @@ p {
     border: 2px solid darkgoldenrod;
 }
 
+#data {
+    margin: 0;
+    padding: 0;
+}
+
 .item {
     background-color: lightgoldenrodyellow;
     opacity: 0.8;
@@ -105,8 +134,13 @@ p {
     border: 1px solid darkgoldenrod;
 }
 
-ol ol {
+ol {
+    padding: 0;
+    margin: 20px;
+}
+
+ol ul {
     list-style: none;
-    padding: 0px;
+    padding: 0;
 
 }
