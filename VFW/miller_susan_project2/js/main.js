@@ -63,18 +63,18 @@ window.addEventListener("DOMContentLoaded", function() {
     function toggleControls(n){
         switch(n){
             case "on":
-                $('choreform').style.display = "none";
+                $("choreform").style.display = "none";
                 addChoreTop.style.display = "inline";
                 showChoresTop.style.display = "none";
                 resetChoresTop.style.display = "inline";
-                $('buttonRowBottom').style.display = "none";
+                $("buttonRowBottom").style.display = "none";
                 break;
             case "off":
                 $("choreform").style.display = "block";
                 addChoreTop.style.display = "none";
                 showChoresTop.style.display = "inline";
                 resetChoresTop.style.display = "inline";
-                $('buttonRowBottom').style.display = "block";
+                $("buttonRowBottom").style.display = "block";
                 $("data").style.display = "none";
                 break;
             default:
@@ -201,7 +201,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 localStorage.removeItem(this.key);
                 window.location.reload();
             } else {
-                var assure = confirm("If you're really done, you can delete it.")
+                var assure = confirm("If you're really done, you can delete it.");
                 if(assure){
                     localStorage.removeItem(this.key);
                     window.location.reload();
@@ -280,9 +280,9 @@ window.addEventListener("DOMContentLoaded", function() {
     function empty() {
         var check = confirm("Are you sure you want to clear all chores?");
         if (check) {
-            var again = confirm("Are you REALLY sure you want to clear all chores?")
+            var again = confirm("Are you REALLY sure you want to clear all chores?");
             if (again) {
-                var certain = confirm("Mom knows if you're deleting them without finishing.  You know this, right?")
+                var certain = confirm("Mom knows if you're deleting them without finishing.  You know this, right?");
                 if (certain) {
                     localStorage.clear();
                     window.location.reload();
