@@ -1,10 +1,10 @@
+*{font-family: Arial, Helvetica, sans-serif;}
+
 body {
     margin: 10px;
     background-color: olivedrab;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
 }
-
 
 h1 {
     background-color: lightgoldenrodyellow;
@@ -30,19 +30,24 @@ h2 {
     border: 1px solid darkgoldenrod;
 }
 
+ol {
+    padding: 0;
+    margin: 20px;
+}
 
-#choreform {
-    background-color: lightgoldenrodyellow;
-    opacity: 0.8;
-    margin: 5px;
-    padding: 10px;
-    width: 610px;
-    border: 1px solid darkgoldenrod;
+ol ul {
+    list-style: none;
+    padding: 0;
+
 }
 
 fieldset {
     border: 1px dotted goldenrod;
     margin-bottom: 7px;
+}
+
+fieldset ul li {
+    list-style: none;
 }
 
 legend {
@@ -60,18 +65,6 @@ option {
     line-height: 1.5em;
 }
 
-.container {
-    background-color: lightgoldenrodyellow;
-    opacity: 0.8;
-    color: goldenrod;
-    font-weight: lighter;
-    text-align: center;
-    margin: 10px 5px 5px 5px;
-    padding: 10px;
-    width: 610px;
-    border: 1px solid darkgoldenrod;
-}
-
 a {
     color: black;
     text-decoration: none;
@@ -86,6 +79,15 @@ a.small {
 
 p {
     padding-bottom: 10px;
+}
+
+#choreform {
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    margin: 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
 }
 
 #buttonRowTop {
@@ -110,6 +112,29 @@ p {
     text-align: center;
 }
 
+#data {
+    margin: 0;
+    padding: 0;
+}
+
+#errors {
+    font-style: italic;
+    color: red;
+    list-style: none;
+}
+
+.container {
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    color: goldenrod;
+    font-weight: lighter;
+    text-align: center;
+    margin: 10px 5px 5px 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
+}
+
 .button {
     background-color: darkgoldenrod;
     font-size: 15px;
@@ -118,11 +143,6 @@ p {
     padding: 5px;
     margin: 10px;
     border: 2px solid darkgoldenrod;
-}
-
-#data {
-    margin: 0;
-    padding: 0;
 }
 
 .item {
@@ -134,13 +154,3 @@ p {
     border: 1px solid darkgoldenrod;
 }
 
-ol {
-    padding: 0;
-    margin: 20px;
-}
-
-ol ul {
-    list-style: none;
-    padding: 0;
-
-}
