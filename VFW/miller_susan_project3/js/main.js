@@ -1,14 +1,14 @@
 //
 // Author: Susan R. Miller
 // Course: VFW 1303
-// Week 3
+// Project 3
 //
 
 // DOM load check
 window.addEventListener("DOMContentLoaded", function () {
 
     // getElementById Function
-    function $(x){
+    function $(x) {
         var theElement = document.getElementById(x);
         return theElement;
     }
