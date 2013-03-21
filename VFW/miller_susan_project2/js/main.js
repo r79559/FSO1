@@ -7,7 +7,7 @@
 // DOM load check
 window.addEventListener("DOMContentLoaded", function () {
 
-    // getElementById Function
+// getElementById Function
     function $(x){
         var theElement = document.getElementById(x);
         return theElement;
@@ -20,13 +20,15 @@ window.addEventListener("DOMContentLoaded", function () {
         showChoresTop = $("showAllTop"),
         resetChores = $("resetAll"),
         resetChoresTop = $("resetAllTop"),
+        setDate = $("date"),
         errorMsg = $("errors"),
         choreTypes = ["Select a Chore Type", "House", "Hygiene", "Pet", "School"],
+        dateOptions = ["Select a Due Date", "Today", "Tomorrow", "Future"],
         doneValue;
 
 /* Create and populate chore types */
     function listTypes() {
-        var selectLi = $("select"),
+        var selectLi = $("chore"),
             makeSelect = document.createElement("select");
         makeSelect.setAttribute("id", "choretype");
         for (var i = 0, j = choreTypes.length; i < j; i++) {
@@ -40,7 +42,48 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     listTypes(); // Makes the drop-down happen.
-/* End Create and Populate Chore Types */
+/* End create and populate chore types */
+
+/* Create and populate date options */
+    function listDates() {
+        var selectLi = $("date"),
+            makeSelect = document.createElement("select");
+        makeSelect.setAttribute("id", "duedate");
+        for (var i = 0, j = dateOptions.length; i < j; i++) {
+            var makeOption = document.createElement("option"),
+                optText = dateOptions[i];
+            makeOption.setAttribute("value", optText);
+            makeOption.innerHTML = optText;
+            makeSelect.appendChild(makeOption);
+        }
+        selectLi.appendChild(makeSelect);
+    }
+
+    listDates(); // Makes the drop-down happen.
+/* End create and populate date options */
+
+// Date function
+    function chooseDate() {
+        if (setDate.value === "Today") {
+            var today = new Date(),
+                todayMonth = today.getMonth(),
+                todayDay = today.getDay(),
+                todayYear = today.getYear(),
+                todayDate = todayMonth + "/" + todayDay + "/" + todayYear;
+            return todayDate;
+        } else if (setDate.value === "Tomorrow") {
+            var tomorrow = new Date();
+            tomorrow.setDate (tomorrow.getDate () + 1);
+            var tomMonth = tomorrow.getMonth(),
+                tomDay = tomorrow.getDay(),
+                tomYear = tomorrow.getYear(),
+                tomDate = tomMonth + "/" + tomDay + "/" + tomYear;
+            return tomDate;
+        } else if (setDate.value === "Future") {
+            $("dateselect").style.display = "block";
+        }
+
+    }
 
 // Sets up function to check for value of selected radio buttons.
     function radioCheck(){
@@ -114,11 +157,16 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         //Due Date Validation mm/dd/yyyy
-        var rex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
-        if(!(rex.exec(getDate.value))) {
-            var dateError = "Please enter a valid date in mm/dd/yyyy format.";
-            getDate.style.border = "1px solid red";
-            msgs.push(dateError);
+        if(getDate.value === "Select a Due Date") {
+            var pickDate = "Please select a due date.";
+            msgs.push(pickDate);
+        } else {
+            var rex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
+            if(!(rex.exec(getDate.value))) {
+                var dateError = "Please enter a valid date in mm/dd/yyyy format.";
+                getDate.style.border = "1px solid red";
+                msgs.push(dateError);
+            }
         }
 
         // Display errors if present
@@ -342,5 +390,6 @@ window.addEventListener("DOMContentLoaded", function () {
     resetChores.addEventListener("click", empty);
     showChoresTop.addEventListener("click", showAll);
     resetChoresTop.addEventListener("click", empty);
+    setDate.addEventListener("click", chooseDate);
 
 }); /* Closes DOM load check function */

@@ -27,7 +27,7 @@
     <fieldset>
         <legend>Chore Info</legend>
     <ul id = "general">
-        <li id = "select"><label for = "choretype">Select the Type of Chore  </label></li>
+        <li id = "chore"><label for = "choretype">Select the Type of Chore </label></li>
 
         <li><label for = "chorename">What is the Chore? </label>
                 <input type = "text" id = "chorename" /></li>
@@ -39,9 +39,10 @@
     <fieldset>
         <legend>Chore Details</legend>
         <ul id = "details">
-        <li><label for = "duedate">Date Due (mm/dd/yyyy)</label>
-            <ul>
-                <li><input type = "date" id = "duedate" name = "duedate" /></li>
+
+        <li id = "date"><label for = "duedate">Date Due </label>
+            <ul id = "dateselect" style = "display:none;">
+                <li><input id="future" type="date" name="future" ></input></li>
             </ul>
         </li>
         <li><label for = "difficulty">Difficulty </label>
@@ -49,6 +50,7 @@
                 <li><input type = "range" id = "difficulty" name = "difficulty" step = "1" value = "5" min = "1" max = "10" /></li>
             </ul>
         </li>
+
         <li><label>Are you done?</label>
             <ul>
                 <li><input type = "radio" checked value = "Not Yet" id = "no" name = "done" /><label for = "no"> Not Yet</label></li>
