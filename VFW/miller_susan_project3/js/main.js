@@ -118,7 +118,6 @@ window.addEventListener("DOMContentLoaded", function () {
         if(!(rex.exec(getDate.value))) {
             var dateError = "Please enter a valid date in mm/dd/yyyy format.";
             getDate.style.border = "1px solid red";
-            getDate.appendData("*");
             msgs.push(dateError);
         }
 
