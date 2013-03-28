@@ -1,0 +1,159 @@
+/* Susan R. Miller
+   VFW 1303 Project 4 */
+
+*{font-family: Arial, Helvetica, sans-serif;}
+
+body {
+    margin: 10px;
+    background-color: olivedrab;
+    font-size: 20px;
+}
+
+h1 {
+    margin: 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    color: darkgreen;
+    text-align: center;
+    opacity: 0.8;
+
+}
+
+h2 {
+    margin: 10px 3px 5px 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    color: darkgreen;
+    text-align: center;
+    font-variant: titling-caps;
+    opacity: 0.8;
+}
+
+ol {
+    margin: 20px;
+    padding: 0;
+}
+
+ol ul {
+    padding: 0;
+    list-style: none;
+
+}
+
+fieldset {
+    margin-bottom: 7px;
+    border: 1px dotted goldenrod;
+}
+
+fieldset ul li {
+    list-style: none;
+}
+
+legend {
+    font-style: italic;
+    font-size: 20px;
+}
+
+label {
+    font-size: 20px;
+    line-height: 1.5em;
+}
+
+option {
+    font-size: 15px;
+    line-height: 1.5em;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a.small {
+    margin: 5px;
+    padding: 2px;
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+p {
+    padding-bottom: 10px;
+}
+
+#choreform {
+    margin: 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+}
+
+#buttonRowTop {
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    width: 630px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+    opacity: 0.8;
+}
+
+#buttonRowBottom {
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    width: 630px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+    opacity: 0.8;
+}
+
+#data {
+    margin: 0;
+    padding: 0;
+}
+
+#errors {
+    color: red;
+    list-style: none;
+    font-style: italic;
+}
+
+.container {
+    margin: 10px 5px 5px 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    color: goldenrod;
+    text-align: center;
+    font-weight: lighter;
+    opacity: 0.8;
+}
+
+.button {
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid darkgoldenrod;
+    background-color: darkgoldenrod;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.item {
+    margin: 10px 5px 5px 5px;
+    padding: 10px;
+    width: 610px;
+    border: 1px solid darkgoldenrod;
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+}
+
