@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", function () {
         showChoresTop = $("showAllTop"),
         resetChores = $("resetAll"),
         resetChoresTop = $("resetAllTop"),
-        setDate = $("date"),
         errorMsg = $("errors"),
         choreDoer = ["Select a Person", "Mom", "Papa", "Daughter"],
         dateOptions = ["Select a Due Date", "Today", "Tomorrow", "Future"],
@@ -69,21 +68,31 @@ window.addEventListener("DOMContentLoaded", function () {
     function chooseDate() {
         if (setDate.value === "Today") {
             var today = new Date(),
-                todayMonth = today.getMonth(),
-                todayDay = today.getDay(),
-                todayYear = today.getYear(),
+                todayMonth = (today.getMonth() + 1),
+                todayDay = today.getDate(),
+                todayYear = today.getFullYear(),
                 todayDate = todayMonth + "/" + todayDay + "/" + todayYear;
+                $("dateselect").style.display = "none";
+console.log("It works!");
+                $("datevalue").setAttribute("value", todayDate)
             return todayDate;
         } else if (setDate.value === "Tomorrow") {
             var tomorrow = new Date();
             tomorrow.setDate (tomorrow.getDate () + 1);
-            var tomMonth = tomorrow.getMonth(),
-                tomDay = tomorrow.getDay(),
-                tomYear = tomorrow.getYear(),
+            var tomMonth = (tomorrow.getMonth() + 1),
+                tomDay = tomorrow.getDate(),
+                tomYear = tomorrow.getFullYear(),
                 tomDate = tomMonth + "/" + tomDay + "/" + tomYear;
+                $("dateselect").style.display = "none";
+                $("datevalue").setAttribute("value", tomDate)
+console.log("It works");
             return tomDate;
         } else if (setDate.value === "Future") {
-            $("dateselect").style.display = "block";
+	            $("dateselect").style.display = "block";
+	            $("future").addEventListener("change", function() {
+	            	$("datevalue").setAttribute("value", $("future").value);
+	            });
+console.log("It works");
         }
 
     }
@@ -130,13 +139,12 @@ window.addEventListener("DOMContentLoaded", function () {
             getDate = $("duedate");
 
 
-
         //Error Message Reset
-        errorMsg.innerHTML = "";
+	        errorMsg.innerHTML = "";
 
-        getDoer.style.border = "1px solid black";
-        getName.style.border = "1px solid black";
-        getDate.style.border = "1px solid black";
+	        getDoer.style.border = "1px solid black";
+	        getName.style.border = "1px solid black";
+	        getDate.style.border = "1px solid black";
         //Error Messages
         var msgs = [];
 
@@ -154,40 +162,20 @@ window.addEventListener("DOMContentLoaded", function () {
             msgs.push(nameError);
         }
 
-/*
+
         //Due Date Validation mm/dd/yyyy
         if(getDate.value === "Select a Due Date") {
             var pickDate = "Please select a due date.";
             msgs.push(pickDate);
-        } else {
-        	date = getDate.stringify;
-            if ((date.charAt(2) === "/") && (date.charAt(6) === "/")) {
-                validDate = ((isNaN(date.slice(0,2))===false && isNaN(date.slice(3,6))===false && isNaN(date.slice(7))===false) && ((date.length === 10) || (date.length === 8)));
-
-            } else {
-            	var dateError = "Please enter a valid date in mm/dd/yy format.";
-                setDate.style.border = "1px solid red";
-                msgs.push(dateError);
-            }
-        }
-*/
-
 /*
-
-
-
-
-
-
-
-            var rex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
-            if(!(rex.exec(getDate.value))) {
-                var dateError = "Please enter a valid date in mm/dd/yyyy format.";
-                getDate.style.border = "1px solid red";
-                msgs.push(dateError);
-            }
-        }
+        } else {
+        	if(getDate.value === "Future"
+        	var dateError = "Please select a valid date.";
+            setDate.style.border = "1px solid red";
+            msgs.push(dateError);
 */
+        }
+
 
         // Display errors if present
         if (msgs.length >= 1){
@@ -426,12 +414,15 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+console.log("It's making it this far");
+
 // Listeners
     addChore.addEventListener("click", validate);
     showChores.addEventListener("click", showAll);
     resetChores.addEventListener("click", empty);
     showChoresTop.addEventListener("click", showAll);
     resetChoresTop.addEventListener("click", empty);
-    setDate.setAttribute("onchange", chooseDate);
+    var setDate = $("date");
+    setDate.addEventListener("change", chooseDate);
 
 }); /* Closes DOM load check function */
