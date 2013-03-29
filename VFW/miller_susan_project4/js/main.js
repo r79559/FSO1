@@ -67,16 +67,17 @@ window.addEventListener("DOMContentLoaded", function () {
 // Date function
     function chooseDate() {
         if (setDate.value === "Today") {
+        	$("datevalue").removeAttribute("value");
             var today = new Date(),
                 todayMonth = (today.getMonth() + 1),
                 todayDay = today.getDate(),
                 todayYear = today.getFullYear(),
                 todayDate = todayMonth + "/" + todayDay + "/" + todayYear;
                 $("dateselect").style.display = "none";
-console.log("It works!");
-                $("datevalue").setAttribute("value", todayDate)
+                $("datevalue").setAttribute("value", todayDate);
             return todayDate;
         } else if (setDate.value === "Tomorrow") {
+        	$("datevalue").removeAttribute("value");
             var tomorrow = new Date();
             tomorrow.setDate (tomorrow.getDate () + 1);
             var tomMonth = (tomorrow.getMonth() + 1),
@@ -84,15 +85,14 @@ console.log("It works!");
                 tomYear = tomorrow.getFullYear(),
                 tomDate = tomMonth + "/" + tomDay + "/" + tomYear;
                 $("dateselect").style.display = "none";
-                $("datevalue").setAttribute("value", tomDate)
-console.log("It works");
+                $("datevalue").setAttribute("value", tomDate);
             return tomDate;
         } else if (setDate.value === "Future") {
+        	$("datevalue").removeAttribute("value");
 	            $("dateselect").style.display = "block";
 	            $("future").addEventListener("change", function() {
 	            	$("datevalue").setAttribute("value", $("future").value);
 	            });
-console.log("It works");
         }
 
     }
@@ -167,13 +167,11 @@ console.log("It works");
         if(getDate.value === "Select a Due Date") {
             var pickDate = "Please select a due date.";
             msgs.push(pickDate);
-/*
-        } else {
-        	if(getDate.value === "Future"
+        } else if((getDate.value === "Future") && !($("datevalue").hasAttribute("value"))) {
         	var dateError = "Please select a valid date.";
-            setDate.style.border = "1px solid red";
+            $("future").style.border = "1px solid red";
             msgs.push(dateError);
-*/
+
         }
 
 
@@ -192,6 +190,17 @@ console.log("It works");
         }
     }
 
+// Assures proper order of date
+	function dateCheck() {
+		var rawDate = $("datevalue").getAttribute("value");
+		if (rawDate.charAt(4) === "-") {
+			var brokenDate = rawDate.split("-");
+			var reordered = brokenDate[1] + "/" + brokenDate[2] + "/" + brokenDate[0];
+			$("datevalue").setAttribute("value", reordered)
+		}
+	}
+
+
 // Saves chore
     function saveChore(key) {
         // Check for existing key, set one if needed
@@ -203,10 +212,11 @@ console.log("It works");
         }
         // Gather and store values as object with form label and value
         radioCheck();
+        dateCheck();
         var item = {};
             item.chore = ["Chore Name: ", $("chorename").value];
             item.who = ["Person Responsible: ", $("choredoer").value];
-            item.date = ["Date Due: ", $("duedate").value];
+            item.date = ["Date Due: ", $("datevalue").getAttribute("value")];
             item.effort = ["Level of Difficulty: ", $("difficulty").value];
             item.done = ["Is it Done? ", doneValue];
 
@@ -414,7 +424,6 @@ console.log("It works");
         }
     }
 
-console.log("It's making it this far");
 
 // Listeners
     addChore.addEventListener("click", validate);
@@ -422,7 +431,7 @@ console.log("It's making it this far");
     resetChores.addEventListener("click", empty);
     showChoresTop.addEventListener("click", showAll);
     resetChoresTop.addEventListener("click", empty);
-    var setDate = $("date");
+    var setDate = $("duedate");
     setDate.addEventListener("change", chooseDate);
 
 }); /* Closes DOM load check function */
