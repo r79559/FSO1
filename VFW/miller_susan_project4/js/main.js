@@ -3,6 +3,9 @@
 // Course: VFW 1303
 // Week 4
 //
+// NOTE:  Date populates in FireFox on Edit Chore.  Date does NOT populate in Chrome on Edit Chore.
+//
+//
 
 // DOM load check
 window.addEventListener("DOMContentLoaded", function () {
@@ -66,8 +69,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
 // Date function
     function chooseDate() {
+	    $("datevalue").removeAttribute("value");
         if (setDate.value === "Today") {
-        	$("datevalue").removeAttribute("value");
             var today = new Date(),
                 todayMonth = (today.getMonth() + 1),
                 todayDay = today.getDate(),
@@ -77,7 +80,6 @@ window.addEventListener("DOMContentLoaded", function () {
                 $("datevalue").setAttribute("value", todayDate);
             return todayDate;
         } else if (setDate.value === "Tomorrow") {
-        	$("datevalue").removeAttribute("value");
             var tomorrow = new Date();
             tomorrow.setDate (tomorrow.getDate () + 1);
             var tomMonth = (tomorrow.getMonth() + 1),
@@ -88,7 +90,6 @@ window.addEventListener("DOMContentLoaded", function () {
                 $("datevalue").setAttribute("value", tomDate);
             return tomDate;
         } else if (setDate.value === "Future") {
-        	$("datevalue").removeAttribute("value");
 	            $("dateselect").style.display = "block";
 	            $("future").addEventListener("change", function() {
 	            	$("datevalue").setAttribute("value", $("future").value);
@@ -171,8 +172,8 @@ window.addEventListener("DOMContentLoaded", function () {
         	var dateError = "Please select a valid date.";
             $("future").style.border = "1px solid red";
             msgs.push(dateError);
-
         }
+/* Could add date validation here to handle Firefox's issues with the Date field requiring manual entry.   */
 
 
         // Display errors if present
@@ -195,9 +196,17 @@ window.addEventListener("DOMContentLoaded", function () {
 		var rawDate = $("datevalue").getAttribute("value");
 		if (rawDate.charAt(4) === "-") {
 			var brokenDate = rawDate.split("-");
+			if (brokenDate[1].length<2) {brokenDate[1] = "0" + brokenDate[1]};
+			if (brokenDate[2].length<2) {brokenDate[2] = "0" + brokenDate[2]};
 			var reordered = brokenDate[1] + "/" + brokenDate[2] + "/" + brokenDate[0];
-			$("datevalue").setAttribute("value", reordered)
+			$("datevalue").setAttribute("value", reordered);
 		}
+	}
+
+	function dateCalVal(storedDate) {
+		var brokenCalVal = storedDate.split("/"),
+		    reorderedCalVal = brokenCalVal[2] + "-" + brokenCalVal[0] + "-" + brokenCalVal[1];
+		    $("datevalue").setAttribute("value", reorderedCalVal);
 	}
 
 
@@ -226,7 +235,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
 // Shows all chores
-    function showAll() {   // want to work on how CSS outputs this so each chore is in own div class item
+    function showAll() {
         if (localStorage.length >= 1) {
         // Replaces form with chores
             toggleControls("on");
@@ -300,7 +309,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
 	}
 
-
 // Autofill with JSON data
 	function insertJSON() {
 		// store info from JSON.js
@@ -335,19 +343,21 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
 // Edit chore
-    function editChore(){
+    function editChore() {
 
     // Get Data from localStorage
         var value = localStorage.getItem(this.key);
-        var item = JSON.parse(value);
-
+            item = JSON.parse(value),
+            storedDate = item.date[1],
+            calVal = dateCalVal(storedDate);
     // Show form and not chore list
         toggleControls("off");
-
+    // Shows dateSelect element
+        $("dateselect").style.display = "block";
     // Populate for with existing data
         $("chorename").value = item.chore[1];
         $("choredoer").value = item.who[1];
-        $("duedate").value = item.date[1];
+        $("future").setAttribute("value", $("datevalue").getAttribute("value"));
         $("difficulty").value = item.effort[1];
 
     // Loop required to determine which (if any) radios were checked
