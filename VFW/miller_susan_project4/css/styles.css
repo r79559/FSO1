@@ -69,14 +69,15 @@ option {
 }
 
 a {
-    color: white;
     text-decoration: none;
+    color: white;
 }
 
 a.small {
     margin: 5px;
     padding: 2px;
     text-decoration: underline;
+    color: #94145E;
     font-size: 15px;
 }
 
