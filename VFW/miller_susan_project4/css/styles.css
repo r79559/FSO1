@@ -5,7 +5,7 @@
 
 body {
     margin: 10px;
-    background-color: olivedrab;
+    background-color: #9ACF50;
     font-size: 20px;
 }
 
@@ -13,9 +13,9 @@ h1 {
     margin: 5px;
     padding: 10px;
     width: 610px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
-    color: darkgreen;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
+    color: #6531FF;
     text-align: center;
     opacity: 0.8;
 
@@ -25,9 +25,9 @@ h2 {
     margin: 10px 3px 5px 5px;
     padding: 10px;
     width: 610px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
-    color: darkgreen;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
+    color: #6531FF;
     text-align: center;
     font-variant: titling-caps;
     opacity: 0.8;
@@ -46,7 +46,7 @@ ol ul {
 
 fieldset {
     margin-bottom: 7px;
-    border: 1px dotted goldenrod;
+    border: 1px dotted #ED4F35;
 }
 
 fieldset ul li {
@@ -69,7 +69,7 @@ option {
 }
 
 a {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
@@ -88,8 +88,8 @@ p {
     margin: 5px;
     padding: 10px;
     width: 610px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
     opacity: 0.8;
 }
 
@@ -98,8 +98,9 @@ p {
     padding-top: 10px;
     padding-bottom: 15px;
     width: 630px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
+    color: white;
     text-align: center;
     opacity: 0.8;
 }
@@ -109,8 +110,9 @@ p {
     padding-top: 10px;
     padding-bottom: 15px;
     width: 630px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
+    color: white;
     text-align: center;
     opacity: 0.8;
 }
@@ -130,9 +132,9 @@ p {
     margin: 10px 5px 5px 5px;
     padding: 10px;
     width: 610px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
-    color: goldenrod;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
+    color: #ED4F35;
     text-align: center;
     font-weight: lighter;
     opacity: 0.8;
@@ -141,8 +143,8 @@ p {
 .button {
     margin: 10px;
     padding: 5px;
-    border: 2px solid darkgoldenrod;
-    background-color: darkgoldenrod;
+    border: 2px solid #94145E;
+    background-color: #94145E;
     text-align: center;
     font-weight: bold;
     font-size: 15px;
@@ -152,8 +154,8 @@ p {
     margin: 10px 5px 5px 5px;
     padding: 10px;
     width: 610px;
-    border: 1px solid darkgoldenrod;
-    background-color: lightgoldenrodyellow;
+    border: 1px solid #94145E;
+    background-color: #FFF2C9;
     opacity: 0.8;
 }
 
